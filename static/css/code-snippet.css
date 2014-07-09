@@ -1,0 +1,12 @@
+.code-snippet {
+  background: #272822;
+  margin-top:30px;
+}
+
+.code-snippet p {
+  font-family: 'Ubuntu Mono';
+  font-size:1.2em;
+  padding: 5px;
+  color:#999;
+  margin:0px;
+}

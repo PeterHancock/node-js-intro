@@ -1,0 +1,48 @@
+.terminal-container {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+}
+
+.add-console {
+    display: none;
+}
+
+.term-button {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    width: 35px;
+    padding:5px;
+    font-size: 1.5em;
+
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+}
+
+.term {
+    /*position: absolute;*/
+    top: 0px;
+    width:100%;
+    left: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: rgba(0,0,0,0.5);
+    padding:20px;
+    color: white;
+}
+.reverse-video {
+    background-color: white;
+}
+
+/*.terminal {
+    height: 100%;
+}
+
+.terminal > div {
+}
+
+*/

@@ -1,0 +1,44 @@
+{
+  "name": "remark-code-snippets",
+  "version": "0.0.0",
+  "description": "Remark + interactive code snippets",
+  "authors": [
+    "Peter Hancock <peter.hancock@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PeterHancock/remark-code-snippets.git"
+  },
+  "dependencies": {
+    "http-server": "~0.6.1",
+    "browser-http": "^3.0.1",
+    "jquery": "~2.1.1",
+    "mustache": "~0.8.2",
+    "async-mustache": "~0.1.0",
+    "shux": "^0.2.0",
+    "shoe": "0.0.15",
+    "mux-demux": "^3.7.9",
+    "ecstatic": "^0.5.4",
+    "through": "^2.3.4"
+  },
+  "devDependencies": {
+    "browserify": "^5.11.1",
+    "exterminate": "^1.4.1",
+    "brfs": "~1.2.0",
+    "watchify": "^1.0.5",
+    "concat-stream": "^1.4.6",
+    "node-watch": "^0.3.4",
+    "minimist": "~1.1.0"
+  },
+  "scripts": {
+    "start": "node server",
+    "build": "npm run browserify && npm run render",
+    "start-dev": "npm run watch & node server 8081",
+    "watch": "npm run watchify & npm run render-watch",
+    "browserify": "browserify -t brfs src/browser/main.js -o static/js/slides.js",
+    "watchify": "watchify -t brfs src/browser/main.js -o static/js/slides.js",
+    "render": "node render -i slides.tmpl.md -o static/slides.md",
+    "render-watch": "node render -i slides.tmpl.md -o static/slides.md -w"
+  },
+  "license": "MIT"
+}
