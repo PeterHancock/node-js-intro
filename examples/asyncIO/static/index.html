@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Node.js HTTP client</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/async/0.9.0/async.js"></script>
+
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="spin.min.js"></script>
+  <script type="text/javascript">
+   google.load('visualization', '1.0', {'packages':['timeline']});
+
+    var numRequests = 20;
+
+    google.setOnLoadCallback(function () {
+      var requestIds = _.range(1, numRequests + 1);
+      
+      async.mapSeries(requestIds, function (id, next) {
+        var request = get(id);
+        setTimeout(function() {
+          next(null, request);
+        }, 10);
+      }, function(err, requests) {
+        $.when.apply($, requests).then(function(){
+          var data = Array.prototype.slice.call(arguments);
+          drawChart(data);
+        });
+      });
+
+      function get(id) {
+        var deferred = $.Deferred();
+        var requestTime = new Date().getTime();
+        $.getJSON('ajax?' + (id)).done(
+            function (response) { 
+              deferred.resolve( {id: id, requestTime: requestTime, response: response} );
+          }
+        );
+        return deferred.promise();
+      }
+
+      function drawChart(data) {
+        var container = document.getElementById('chart_div');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn({ type: 'string', id: 'Position' });
+        dataTable.addColumn({ type: 'string', id: 'Name' });
+        dataTable.addColumn({ type: 'number', id: 'Start' });
+        dataTable.addColumn({ type: 'number', id: 'End' });
+        var initTime = data[0].requestTime;
+        var rows = _(data).map(function(request, i) {
+            return ['node#' + request.response.nodeId, 'request#' + request.id, request.response.times[0] - initTime, 
+                request.response.times[1] - initTime];
+        });
+        dataTable.addRows(rows);
+        chart.draw(dataTable, {
+          timeline: { colorByRowLabel: true }
+        });
+        $('#spinner').empty();
+      }
+    });
+
+$(function() {
+  $.get('config.json', function(config) {
+
+     var reqTime = config.async + config.sync;
+    $('<p>').text(numRequests + ' concurrent requests.').appendTo('#info');
+    $('<p>')
+      .text('Request time >= ' + reqTime + 's =  ' + config.async + 's async phase + ' + config.sync + 's sync phase')
+      .appendTo('#info');
+     $('<p>')
+      .text('How does times compare to ' + (numRequests * reqTime) + 's = ' + numRequests + ' * ' + reqTime + 's?' )
+      .appendTo('#info');
+
+  
+    var reqTime = config.async + config.sync;
+    $('#spinner').append(new Spinner({
+      lines: 7,
+      length: 17,
+      width: 21,
+      radius: 36,
+      corners: 1.0,
+      rotate: 0,
+      trail: 26,
+      speed: 1.0,
+      direction: 1,
+      shadow: 'on'
+    }).spin().el);
+  }) 
+});
+  </script>
+</head>
+<body>
+  <h1>Async IO and the Event Loop</h1>
+  <div id="info" style="color:white;background-color:#666;padding:20px;width: 1000px"></div>
+  <div id="spinner"></div>
+  <div id="chart_div" style="width: 1000px; height: 1000px;padding:20px;"></div>
+</body>
+
+</html>

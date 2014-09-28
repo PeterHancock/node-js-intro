@@ -1,0 +1,12 @@
+{
+  "name": "asyncIO",
+  "version": "0.0.0",
+  "description": "Demonstrating async IO and the event loop",
+  "dependencies": {
+    "sleep": "~1.1.8",
+    "underscore": "~1.6.0",
+    "async": "~0.9.0",
+    "q": "~1.0.1",
+    "ecstatic": "~0.5.4"
+  }
+}

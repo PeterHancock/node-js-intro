@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Node.js HTTP client</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/async/0.9.0/async.js"></script>
+
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+
+  google.load('visualization', '1.0', {'packages':['timeline']});
+
+  google.setOnLoadCallback(function () {
+    $.getJSON('data.json').done(function (data) { drawChart(data);});
+
+  function drawChart(data) {
+        var container = document.getElementById('chart_div');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn({ type: 'string', id: 'Position' });
+        dataTable.addColumn({ type: 'string', id: 'Name' });
+        dataTable.addColumn({ type: 'number', id: 'Start' });
+        dataTable.addColumn({ type: 'number', id: 'End' });
+        var initTime = data[0].requestTime;
+        var rows = _(data).map(function(item, i) {
+            return ['node#' + item.response.nodeId, 'request#' + item.id, _(item.response.times).head() - initTime, _(item.response.times).last() - initTime];
+        });
+        dataTable.addRows(rows);
+        chart.draw(dataTable);
+    }
+  });
+    
+  </script>
+</head>
+<body>
+  <div id="chart_div" style="width: 1000px; height: 1000px;"></div>
+</body>
+</html>
