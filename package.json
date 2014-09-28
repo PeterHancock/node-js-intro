@@ -1,14 +1,11 @@
 {
-  "name": "remark-code-snippets",
+  "name": "node-js-intro",
   "version": "0.0.0",
-  "description": "Remark + interactive code snippets",
+  "private": true,
+  "description": "An introduction to node.js",
   "authors": [
     "Peter Hancock <peter.hancock@gmail.com>"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/PeterHancock/remark-code-snippets.git"
-  },
   "dependencies": {
     "http-server": "~0.6.1",
     "browser-http": "^3.0.1",
