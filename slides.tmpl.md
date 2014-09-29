@@ -110,7 +110,6 @@ var JiraClient = require('jira-client');
 ...
 ```
 
-
 ---
 #package.json
 
@@ -285,6 +284,28 @@ The canonical TCP example
 Demonstrates
 - non-blocking IO
 - Many coneections/ process
+
+---
+#Demo
+{{#code-snippet}}{
+    "src": "examples/async-io/server.js",
+    "lines": [1, 9]
+}{{/code-snippet}}
+
+---
+#Demo
+{{#code-snippet}}{
+    "src": "examples/async-io/server.js",
+    "lines": [11, 29]
+}{{/code-snippet}}
+
+---
+#Demo
+{{#code-snippet}}{
+    "src": "examples/async-io/server.js",
+    "lines": [31]
+}{{/code-snippet}}
+
 
 ---
 #What about my other 7 cores?

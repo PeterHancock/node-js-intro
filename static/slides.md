@@ -116,7 +116,6 @@ var JiraClient = require('jira-client');
 ...
 ```
 
-
 ---
 #package.json
 
@@ -232,7 +231,7 @@ jiraClient.getIssue(key, function (err, issue) {
     if (err) {
         return console.error(err);
     }
-    console.log(mustache.render(': ', issue));
+    console.log(mustache.render('{{key}}: {{summary}}', issue));
 });
 
 ```
@@ -394,6 +393,91 @@ The canonical TCP example
 Demonstrates
 - non-blocking IO
 - Many coneections/ process
+
+---
+#Demo
+.code-snippet[
+examples/async-io/server.js (lines 1 to 9)
+
+```javascript
+var http = require('http');
+var url = require('url');
+var sleep = require('sleep');
+var fs = require('fs');
+var Q = require('q');
+var ecstatic = require('ecstatic')(__dirname + '/static');
+
+var config = require('./static/config.json');
+var ip = process.env.IP, port = process.env.PORT || 8080;
+```
+
+
+]
+
+
+---
+#Demo
+.code-snippet[
+examples/async-io/server.js (lines 11 to 29)
+
+```javascript
+var start = function(nodeId) {
+	nodeId = nodeId || 1;
+	var server = http.createServer();
+	server.on('request', function(request, response) {
+		if ( url.parse(request.url).pathname === '/ajax') {
+			response.setHeader("Content-Type", "application/json");
+			var times = [now()];
+			blockingPhase(0.1);
+			return asyncPhase(config.async).done(function() {
+				blockingPhase(config.sync);
+				times.push(now());
+				response.end(JSON.stringify({ nodeId: nodeId, times: times }));
+			});
+		}
+		ecstatic(request, response);
+	});
+	server.listen(port, ip);
+	console.log('node#' + nodeId + ' server listening on ' + port);
+};
+```
+
+
+]
+
+
+---
+#Demo
+.code-snippet[
+examples/async-io/server.js (lines 31 to end)
+
+```javascript
+function now() {
+	return new Date().getTime();
+}
+
+function asyncPhase(t) {
+	var deferred = Q.defer();
+	setTimeout(function () { deferred.resolve(); }, t * 1000/* milliseconds */);
+	return deferred.promise;
+}
+
+function blockingPhase(t) {
+	sleep.usleep(t * 1000000 /* microseconds */);
+}
+
+if (require.main === module) {
+	start();
+} else {
+	module.exports = start;
+}
+
+```
+
+
+]
+
+
 
 ---
 #What about my other 7 cores?
