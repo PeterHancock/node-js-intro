@@ -6,25 +6,20 @@ var Q = require('q');
 var ecstatic = require('ecstatic')(__dirname + '/static');
 
 var config = require('./static/config.json');
+var ip = process.env.IP, port = process.env.PORT || 8080;
 
-var run = function(nodeId) {
-	var ip = process.env.IP;
-	var port = process.env.PORT || 8080;
+var start = function(nodeId) {
+	nodeId = nodeId || 1;
 	var server = http.createServer();
-
 	server.on('request', function(request, response) {
-		var requrl = url.parse(request.url);
-		var pathname = requrl.pathname;
-		if (pathname === '/ajax') {
+		if ( url.parse(request.url).pathname === '/ajax') {
 			response.setHeader("Content-Type", "application/json");
 			var times = [now()];
 			blockingPhase(0.1);
 			return asyncPhase(config.async).done(function() {
 				blockingPhase(config.sync);
 				times.push(now());
-				response.end(JSON.stringify({
-					nodeId: nodeId,
-					times: times}));
+				response.end(JSON.stringify({ nodeId: nodeId, times: times }));
 			});
 		}
 		ecstatic(request, response);
@@ -47,8 +42,8 @@ function blockingPhase(t) {
 	sleep.usleep(t * 1000000 /* microseconds */);
 }
 
-if (require.main !== module) {
-	module.exports = run;
+if (require.main === module) {
+	start();
 } else {
-	run(1);
+	module.exports = start;
 }

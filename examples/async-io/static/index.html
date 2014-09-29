@@ -10,6 +10,8 @@
   <!--Load the AJAX API-->
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript" src="spin.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"></link>
   <script type="text/javascript">
    google.load('visualization', '1.0', {'packages':['timeline']});
 
@@ -17,7 +19,7 @@
 
     google.setOnLoadCallback(function () {
       var requestIds = _.range(1, numRequests + 1);
-      
+
       async.mapSeries(requestIds, function (id, next) {
         var request = get(id);
         setTimeout(function() {
@@ -34,7 +36,7 @@
         var deferred = $.Deferred();
         var requestTime = new Date().getTime();
         $.getJSON('ajax?' + (id)).done(
-            function (response) { 
+            function (response) {
               deferred.resolve( {id: id, requestTime: requestTime, response: response} );
           }
         );
@@ -51,7 +53,7 @@
         dataTable.addColumn({ type: 'number', id: 'End' });
         var initTime = data[0].requestTime;
         var rows = _(data).map(function(request, i) {
-            return ['node#' + request.response.nodeId, 'request#' + request.id, request.response.times[0] - initTime, 
+            return ['node#' + request.response.nodeId, 'request#' + request.id, request.response.times[0] - initTime,
                 request.response.times[1] - initTime];
         });
         dataTable.addRows(rows);
@@ -66,16 +68,15 @@ $(function() {
   $.get('config.json', function(config) {
 
      var reqTime = config.async + config.sync;
-    $('<p>').text(numRequests + ' concurrent requests.').appendTo('#info');
-    $('<p>')
-      .text('Request time >= ' + reqTime + 's =  ' + config.async + 's async phase + ' + config.sync + 's sync phase')
-      .appendTo('#info');
-     $('<p>')
-      .text('How does times compare to ' + (numRequests * reqTime) + 's = ' + numRequests + ' * ' + reqTime + 's?' )
-      .appendTo('#info');
 
-  
-    var reqTime = config.async + config.sync;
+     $('#info').append(Mustache.render($('#info_tmpl').text(), {
+        numRequests: numRequests,
+        async: config.async,
+        sync: config.sync,
+        upperTime: numRequests * reqTime,
+        reqTime: reqTime
+     }));
+
     $('#spinner').append(new Spinner({
       lines: 7,
       length: 17,
@@ -88,15 +89,29 @@ $(function() {
       direction: 1,
       shadow: 'on'
     }).spin().el);
-  }) 
+  })
 });
+  </script>
+
+  <script type="text/template" id ="info_tmpl">
+  <p>{{numRequests}} concurrent requests, each with a duration >=  {{reqTime}}s ( {{async}}s async phase + {{sync}}s sync phase )</p>
+  <p>How does times compare to {{upperTime}}s ( {{numRequests}} * {{reqTime}} s )?</p>
   </script>
 </head>
 <body>
-  <h1>Async IO and the Event Loop</h1>
-  <div id="info" style="color:white;background-color:#666;padding:20px;width: 1000px"></div>
-  <div id="spinner"></div>
-  <div id="chart_div" style="width: 1000px; height: 1000px;padding:20px;"></div>
+<div class="jumbotron">
+  <div class="container">
+    <h1>Async IO and the Event Loop</h1>
+    <div id="info"></div>
+  </div>
+  <div class="panel panel-default">
+  <div class=" panel-body">
+    <div id="spinner"></div>
+    <div id="chart_div" style="height: 1000px;"></div>
+  </div>
+</div>
+
+
 </body>
 
 </html>
