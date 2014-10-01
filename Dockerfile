@@ -3,9 +3,13 @@
 #
 # docker build -t <IMAGE_TAG> .
 #
-# docker run -it --rm -p 8080:8080 --name <CONTAINER_NAME> <IMAGE_TAG>
+# docker run -it --rm <IMAGE_TAG>
+FROM node:0.10.32
 
-FROM node:0.10-onbuild
+RUN mkdir -p /usr/src/app
 
-EXPOSE 8080
+ADD . /usr/src/app
 
+WORKDIR /usr/src/app
+
+RUN git clean -d -x -f

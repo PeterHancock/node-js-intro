@@ -31151,9 +31151,7 @@ function Terminal(endpoint) {
 
 Terminal.prototype.create = function (cwd) {
     var term = exterminate(80, 25);
-    var sh = this.mx.createStream(cwd);
-    sh.write('PS1=">";clear\n');
-    term.pipe(sh).pipe(term);
+    term.pipe(this.mx.createStream(cwd)).pipe(term);
     term.terminal.element.style['background-color'] = 'rgba(0, 0, 0, 0)';
     return term;
 };
