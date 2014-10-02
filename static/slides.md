@@ -519,10 +519,10 @@ package.json (lines 1 to 22)
     "shoe": "0.0.15",
     "mux-demux": "^3.7.9",
     "ecstatic": "^0.5.4",
-    "through": "^2.3.4"
+    "through": "^2.3.4",
+    "minimist": "^1.1.0"
   },
   "devDependencies": {
-    "browserify": "^5.11.1",
 ```
 
 
@@ -538,6 +538,7 @@ Building, testing (?!), and starting the server
 package.json (lines 23 to end)
 
 ```javascript
+    "browserify": "^5.11.1",
     "exterminate": "^1.4.1",
     "brfs": "~1.2.0",
     "watchify": "^1.0.5",
@@ -575,14 +576,14 @@ var http = require('http');
 var ecstatic = require('ecstatic');
 var shoe = require('shoe');
 var MuxDemux = require('mux-demux');
-var shux = require('shux')();
+var Shux = require('shux');
+var argv = require('minimist')(process.argv.slice(2));
 
+var port = argv.p || 8080;
 
-var port = process.argv[2] || 8080;
+var shellCmd = argv.docker ? 'docker run -it --rm ' + argv.docker + ' /bin/bash' : '/bin/bash -i';
 
 var server = http.createServer(ecstatic(__dirname));
-
-server.listen(port);
 ```
 
 .add-console[.]
@@ -593,28 +594,36 @@ server.listen(port);
 #slides - server
 
 .code-snippet[
-server.js (lines 14 to end)
+server.js (lines 14 to 40)
 
 ```javascript
+server.listen(port);
+
 var websock = shoe(function(stream) {
+    var shux = Shux();
     stream
         .pipe(MuxDemux(function (mstream) {
-            mstream
-                .pipe(shux.createShell({
-                    command: ['bash', '-i'/*, '-r'*/],
-                    cwd: mstream.meta,
+            var shell = shux.createShell({
+                    command: shellCmd.split(' '),
                     columns: 200,
                     rows:35
-                }))
+                });
+            shell.write('PS1=">";cd ' + mstream.meta + ';clear\n');
+            mstream
+                .pipe(shell)
                 .pipe(mstream);
         }))
         .pipe(stream);
+    stream.on('close', function() {
+        shux.list().forEach( function (id) { shux.attach(id).end('exit\n'); }); // Yuck!
+    });
 });
 
 websock.install(server, '/terminal');
 
 console.log("Listening on port " + port);
 
+if (argv.docker) {
 ```
 
 .add-console[.]
