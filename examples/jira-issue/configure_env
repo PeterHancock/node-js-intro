@@ -1,0 +1,12 @@
+echo JIRA_HOST:
+read host
+export JIRA_HOST=$host
+
+echo JIRA_USER:
+read user
+export JIRA_USER=$host
+
+echo JIRA_PASSWORD:
+read -s password
+export JIRA_PASSWORD=$password
+
