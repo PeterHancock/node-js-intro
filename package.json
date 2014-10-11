@@ -33,7 +33,7 @@
   "scripts": {
     "start": "node server",
     "build": "npm run browserify && npm run render",
-    "start-dev": "npm run watch & node server 8081",
+    "start-dev": "npm run watch & node server",
     "watch": "npm run watchify & npm run render-watch",
     "browserify": "browserify -t brfs src/browser/main.js -o static/js/slides.js",
     "watchify": "watchify -t brfs src/browser/main.js -o static/js/slides.js",

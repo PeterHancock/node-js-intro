@@ -112,4 +112,12 @@ Terminal is non-restricted and for user runnning the server
 ---
 #Getting Started
 
-Fork this project and replace examples and slides.tmpl.md 
+Fork this project and replace examples and slides.tmpl.md
+
+---
+{{#code-snippet}}
+{
+	"src": "examples/main.js",
+	"terminal": "."
+}
+{{/code-snippet}}

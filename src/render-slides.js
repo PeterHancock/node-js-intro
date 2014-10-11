@@ -14,7 +14,11 @@ function renderCodeSnippet(src, code, config) {
 
     if (config.terminal) {
         model.terminal = true;
-        model.cwd = path.dirname(src);
+        if (typeof config.terminal  === "string") {
+            model.cwd = config.terminal;
+        } else {
+            model.cwd = path.dirname(src);
+        }
     }
 
     if (config.lines) {
@@ -27,7 +31,6 @@ function renderCodeSnippet(src, code, config) {
             model.code = lines.slice(config.lines[0] - 1, config.lines[1]).join('\n');    
         }
     }
-
     return Mustache.render(codeSnippetTmpl, model);
 };
 
