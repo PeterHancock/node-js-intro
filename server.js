@@ -7,7 +7,7 @@ var argv = require('minimist')(process.argv.slice(2));
 
 var port = argv.p || 8080;
 
-var shellCmd = argv.docker ? 'docker run -it --rm ' + argv.docker + ' /bin/bash' : '/bin/bash -i';
+var shellCmd = argv.shell ? argv.shell : '/bin/bash -i';
 
 var server = http.createServer(ecstatic(__dirname));
 
