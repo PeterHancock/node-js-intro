@@ -1,8 +1,10 @@
+
+
 name: inverse
 layout: true
 class: center, middle, inverse
 ---
-#node.js
+#An Introduction to node.js
 
 .footnote[
 	[nodejs.org - project site](http://nodejs.org/)
@@ -15,47 +17,96 @@ layout: false
 ]
 .right-column[
 
-- What is it?
+- What is node.js?
 
 - What is all the fuss about?
 
 - Where to start?
 
-- Tools and Community (npm)
+- The Tools and Community
 
 - Back to the Browser
 ]
 
 ---
-layout: false
-.left-column[
-  ## What is it?
-]
-.right-column[
+template: inverse
 
-- A cross-platform runtime environment for server-side and networking applications written in JavaScript
-
-- A single threaded application code and non-blocking IO
-
-- Tools (npm registry http://registry.npmjs.org/)
-
-- Strong OS Community
-]
-
-???
-APIs for acessing File System, Networking
+#What is node.js?
 
 ---
-Well coming from web development to application/ server development
+layout: false
 
-JS for all it's warts has
-function references
-- higher order functions/ functional programming (Java is catching up/ over taking with Lambda support)
+.left-column[
+  ## What is node.js?
+]
+.right-column[
+- A cross-platform runtime environment for server-side and networking applications written in JavaScript
+]
 
-- The single threaded event loop - a model for concurrent programming
+--
+.right-column[
+- Built on [V8](https://code.google.com/p/v8/), Chrome's JavaScript runtime
+]
 
-Node.js is a route for app devs to learn JavaScript - example
+--
+.right-column[
+- Tools (*npm* registry http://registry.npmjs.org/)
+]
 
+--
+.right-column[
+
+- Open source with a large community
+]
+
+---
+template: inverse
+
+#What is all the fuss about?
+
+---
+
+layout: false
+
+.left-column[
+  ## What is all the fuss about?
+  ### JavaScript
+]
+.right-column[
+- Cross platform - Browser, Server (Windows, OSX, *nix)
+]
+
+--
+.right-column[
+- Browser devs have a route to server-side 
+]
+
+--
+.right-column[
+- Server-side devs have an excuse to dabble with JS
+]
+
+---
+.left-column[
+  ## What is all the fuss about?
+  ### JavaScript
+  ### The Event Loop
+]
+
+.right-column[
+- Applications are single threaded
+]
+
+--
+
+
+.right-column[
+- IO is event-driven and non-blocking
+]
+--
+.right-column[
+- Designed to address the fact that most time is spent blocking on IO
+]
 
 ---
 template: inverse
@@ -231,7 +282,7 @@ jiraClient.getIssue(key, function (err, issue) {
     if (err) {
         return console.error(err);
     }
-    console.log(mustache.render('{{key}}: {{summary}}', issue));
+    console.log(mustache.render(': ', issue));
 });
 
 ```
@@ -549,7 +600,7 @@ package.json (lines 23 to end)
   "scripts": {
     "start": "node server",
     "build": "npm run browserify && npm run render",
-    "start-dev": "npm run watch & node server 8081",
+    "start-dev": "npm run watch & node server",
     "watch": "npm run watchify & npm run render-watch",
     "browserify": "browserify -t brfs src/browser/main.js -o static/js/slides.js",
     "watchify": "watchify -t brfs src/browser/main.js -o static/js/slides.js",
@@ -581,7 +632,7 @@ var argv = require('minimist')(process.argv.slice(2));
 
 var port = argv.p || 8080;
 
-var shellCmd = argv.docker ? 'docker run -it --rm ' + argv.docker + ' /bin/bash' : '/bin/bash -i';
+var shellCmd = argv.shell ? argv.shell : '/bin/bash -i';
 
 var server = http.createServer(ecstatic(__dirname));
 ```

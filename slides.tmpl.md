@@ -1,8 +1,11 @@
+{{ The default Mustache delimeters clash with remark :-( }}
+{{=[[ ]]=}}
+
 name: inverse
 layout: true
 class: center, middle, inverse
 ---
-#node.js
+#An Introduction to node.js
 
 .footnote[
 	[nodejs.org - project site](http://nodejs.org/)
@@ -15,47 +18,96 @@ layout: false
 ]
 .right-column[
 
-- What is it?
+- What is node.js?
 
 - What is all the fuss about?
 
 - Where to start?
 
-- Tools and Community (npm)
+- The Tools and Community
 
 - Back to the Browser
 ]
 
 ---
-layout: false
-.left-column[
-  ## What is it?
-]
-.right-column[
+template: inverse
 
-- A cross-platform runtime environment for server-side and networking applications written in JavaScript
-
-- A single threaded application code and non-blocking IO
-
-- Tools (npm registry http://registry.npmjs.org/)
-
-- Strong OS Community
-]
-
-???
-APIs for acessing File System, Networking
+#What is node.js?
 
 ---
-Well coming from web development to application/ server development
+layout: false
 
-JS for all it's warts has
-function references
-- higher order functions/ functional programming (Java is catching up/ over taking with Lambda support)
+.left-column[
+  ## What is node.js?
+]
+.right-column[
+- A cross-platform runtime environment for server-side and networking applications written in JavaScript
+]
 
-- The single threaded event loop - a model for concurrent programming
+--
+.right-column[
+- Built on [V8](https://code.google.com/p/v8/), Chrome's JavaScript runtime
+]
 
-Node.js is a route for app devs to learn JavaScript - example
+--
+.right-column[
+- Tools (*npm* registry http://registry.npmjs.org/)
+]
 
+--
+.right-column[
+
+- Open source with a large community
+]
+
+---
+template: inverse
+
+#What is all the fuss about?
+
+---
+
+layout: false
+
+.left-column[
+  ## What is all the fuss about?
+  ### JavaScript
+]
+.right-column[
+- Cross platform - Browser, Server (Windows, OSX, *nix)
+]
+
+--
+.right-column[
+- Browser devs have a route to server-side 
+]
+
+--
+.right-column[
+- Server-side devs have an excuse to dabble with JS
+]
+
+---
+.left-column[
+  ## What is all the fuss about?
+  ### JavaScript
+  ### The Event Loop
+]
+
+.right-column[
+- Applications are single threaded
+]
+
+--
+
+
+.right-column[
+- IO is event-driven and non-blocking
+]
+--
+.right-column[
+- Designed to address the fact that most time is spent blocking on IO
+]
 
 ---
 template: inverse
@@ -69,10 +121,10 @@ template: inverse
 
 - Create
 
-{{#code-snippet}}{
+[[#code-snippet]]{
 	"src": "examples/simple-app/main.js",
 	"terminal": true
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 - run it
 
@@ -115,36 +167,36 @@ var JiraClient = require('jira-client');
 
 Used by node and npm (and other tools) to build, test, publish etc
 
-{{#code-snippet}}{
+[[#code-snippet]]{
     "src": "examples/jira-issue/package.json",
     "terminal": true
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 #Application code - main module
 
-{{#code-snippet}}{
+[[#code-snippet]]{
     "src": "examples/jira-issue/index.js",
     "lines": [1, 11],
     "terminal": true
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 #Application code - main module
 
-{{#code-snippet}}{
+[[#code-snippet]]{
     "src": "examples/jira-issue/index.js",
     "lines": [13],
     "terminal": true
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 #Application code - cli
 
-{{#code-snippet}}{
+[[#code-snippet]]{
     "src": "examples/jira-issue/bin/cli",
     "terminal": true
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 
@@ -273,10 +325,10 @@ DIAGRAM
 ---
 #Event loop in action:
 
-{{#code-snippet}}{
+[[#code-snippet]]{
 	"src": "examples/eventLoop/tick.js",
 	"terminal": true
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 Asyncronous IO
@@ -287,24 +339,24 @@ Demonstrates
 
 ---
 #Demo
-{{#code-snippet}}{
+[[#code-snippet]]{
     "src": "examples/async-io/server.js",
     "lines": [1, 9]
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 #Demo
-{{#code-snippet}}{
+[[#code-snippet]]{
     "src": "examples/async-io/server.js",
     "lines": [11, 29]
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 #Demo
-{{#code-snippet}}{
+[[#code-snippet]]{
     "src": "examples/async-io/server.js",
     "lines": [31]
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 
 ---
@@ -325,57 +377,57 @@ An example ...
 ---
 #slides
 
-{{#code-snippet}}{
+[[#code-snippet]]{
 	"src": "package.json",
 	"lines": [1,22]
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 #slides - server
 
 Building, testing (?!), and starting the server
 
-{{#code-snippet}}{
+[[#code-snippet]]{
 	"src": "package.json",
 	"lines": [23]
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 #slides - server
 
-{{#code-snippet}}{
+[[#code-snippet]]{
 	"src": "server.js",
 	"terminal": true,
 	"lines": [1, 12]
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 #slides - server
 
-{{#code-snippet}}{
+[[#code-snippet]]{
 	"src": "server.js",
 	"terminal": true,
 	"lines": [14, 40]
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 #slides - browser
 
-{{#code-snippet}}{
+[[#code-snippet]]{
 	"src": "src/browser/main.js",
 	"terminal": true,
 	"lines": [1, 24]
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 
 ---
 #slides - browser
 
-{{#code-snippet}}{
+[[#code-snippet]]{
 	"src": "src/browser/main.js",
 	"terminal": true,
 	"lines": [26, 45]
-}{{/code-snippet}}
+}[[/code-snippet]]
 
 ---
 References
