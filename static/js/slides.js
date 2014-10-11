@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/peter/projects/remark-code-snippets/node_modules/async-mustache/js/index.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function(){
     var extend = require('extend');
     var Q = require('q');
@@ -141,7 +141,7 @@
 
 }).call(this);
 
-},{"extend":"/home/peter/projects/remark-code-snippets/node_modules/async-mustache/node_modules/extend/index.js","q":"/home/peter/projects/remark-code-snippets/node_modules/async-mustache/node_modules/q/q.js"}],"/home/peter/projects/remark-code-snippets/node_modules/async-mustache/node_modules/extend/index.js":[function(require,module,exports){
+},{"extend":2,"q":3}],2:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 var undefined;
@@ -223,7 +223,7 @@ module.exports = function extend() {
 };
 
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/async-mustache/node_modules/q/q.js":[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 (function (process){
 // vim:ts=4:sts=4:sw=4:
 /*!
@@ -2131,7 +2131,7 @@ return Q;
 });
 
 }).call(this,require('_process'))
-},{"_process":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/external/XmlHttpRequest.js":[function(require,module,exports){
+},{"_process":43}],4:[function(require,module,exports){
 /**
  * from https://github.com/philikon/MockHttpRequest
  * thanks
@@ -2626,7 +2626,7 @@ MockHttpServer.prototype = {
 };
 
 module.exports = MockHttpRequest;
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/BaseExtension.js":[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 (function() {
   var BaseExtension, EventEmitter,
     __hasProp = {}.hasOwnProperty,
@@ -2656,7 +2656,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"events":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/events/events.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Forms.js":[function(require,module,exports){
+},{"events":39}],6:[function(require,module,exports){
 (function() {
   var $, BaseExtension, Forms,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
@@ -2734,7 +2734,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"./BaseExtension":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/BaseExtension.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Links.js":[function(require,module,exports){
+},{"./BaseExtension":5}],7:[function(require,module,exports){
 (function() {
   var $, BaseExtension, Links, hasAttr,
     __hasProp = {}.hasOwnProperty,
@@ -2791,7 +2791,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"./BaseExtension":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/BaseExtension.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Loading.js":[function(require,module,exports){
+},{"./BaseExtension":5}],8:[function(require,module,exports){
 (function() {
   var BaseExtension, Loading,
     __hasProp = {}.hasOwnProperty,
@@ -2822,7 +2822,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"./BaseExtension":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/BaseExtension.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Offline.js":[function(require,module,exports){
+},{"./BaseExtension":5}],9:[function(require,module,exports){
 (function() {
   var BaseExtension, Offline,
     __hasProp = {}.hasOwnProperty,
@@ -2904,7 +2904,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"./BaseExtension":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/BaseExtension.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Redirect.js":[function(require,module,exports){
+},{"./BaseExtension":5}],10:[function(require,module,exports){
 (function() {
   var BaseExtension, Redirect,
     __hasProp = {}.hasOwnProperty,
@@ -2933,7 +2933,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"./BaseExtension":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/BaseExtension.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Snippets.js":[function(require,module,exports){
+},{"./BaseExtension":5}],11:[function(require,module,exports){
 (function() {
   var BaseExtension, Snippets, hasAttr,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
@@ -2992,7 +2992,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"./BaseExtension":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/BaseExtension.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Helpers.js":[function(require,module,exports){
+},{"./BaseExtension":5}],12:[function(require,module,exports){
 (function() {
   var Helpers;
 
@@ -3057,7 +3057,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Http.js":[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function() {
   var Http, createInstance, http;
 
@@ -3091,7 +3091,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"./Extensions/Forms":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Forms.js","./Extensions/Links":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Links.js","./Extensions/Loading":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Loading.js","./Extensions/Offline":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Offline.js","./Extensions/Redirect":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Redirect.js","./Extensions/Snippets":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/Snippets.js","./Helpers":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Helpers.js","./Mocks/Http":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Mocks/Http.js","./Xhr":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Xhr.js","./_Http":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/_Http.js","q":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/q.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Mocks/Http.js":[function(require,module,exports){
+},{"./Extensions/Forms":6,"./Extensions/Links":7,"./Extensions/Loading":8,"./Extensions/Offline":9,"./Extensions/Redirect":10,"./Extensions/Snippets":11,"./Helpers":12,"./Mocks/Http":14,"./Xhr":20,"./_Http":21,"q":34}],14:[function(require,module,exports){
 (function() {
   var Http, OriginalHttp, Request, createRequest,
     __hasProp = {}.hasOwnProperty,
@@ -3196,7 +3196,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"../_Http":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/_Http.js","./Request":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Mocks/Request.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Mocks/Request.js":[function(require,module,exports){
+},{"../_Http":21,"./Request":15}],15:[function(require,module,exports){
 (function() {
   var OriginalRequest, Request, Xhr,
     __hasProp = {}.hasOwnProperty,
@@ -3225,7 +3225,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"../Request":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Request.js","./Xhr":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Mocks/Xhr.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Mocks/Xhr.js":[function(require,module,exports){
+},{"../Request":18,"./Xhr":16}],16:[function(require,module,exports){
 (function() {
   var OriginalXhr, Xhr, XmlHttpMocks,
     __hasProp = {}.hasOwnProperty,
@@ -3269,7 +3269,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"../../external/XmlHttpRequest":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/external/XmlHttpRequest.js","../Xhr":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Xhr.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Queue.js":[function(require,module,exports){
+},{"../../external/XmlHttpRequest":4,"../Xhr":20}],17:[function(require,module,exports){
 (function() {
   var EventEmitter, Q, Queue,
     __hasProp = {}.hasOwnProperty,
@@ -3392,7 +3392,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"events":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/events/events.js","q":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/q.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Request.js":[function(require,module,exports){
+},{"events":39,"q":34}],18:[function(require,module,exports){
 (function() {
   var EventEmitter, Request, Xhr,
     __hasProp = {}.hasOwnProperty,
@@ -3502,7 +3502,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"./Xhr":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Xhr.js","events":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/events/events.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Response.js":[function(require,module,exports){
+},{"./Xhr":20,"events":39}],19:[function(require,module,exports){
 (function() {
   var Response;
 
@@ -3531,7 +3531,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Xhr.js":[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 (function() {
   var EventEmitter, Helpers, Q, Response, Xhr, escape,
     __hasProp = {}.hasOwnProperty,
@@ -3704,7 +3704,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"./Helpers":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Helpers.js","./Response":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Response.js","escape-regexp":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/escape-regexp/index.js","events":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/events/events.js","q":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/q.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/_Http.js":[function(require,module,exports){
+},{"./Helpers":12,"./Response":19,"escape-regexp":22,"events":39,"q":34}],21:[function(require,module,exports){
 (function() {
   var BaseExtension, EventEmitter, Http, Q, Queue, Request,
     __hasProp = {}.hasOwnProperty,
@@ -3949,7 +3949,7 @@ module.exports = MockHttpRequest;
 
 }).call(this);
 
-},{"./Extensions/BaseExtension":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Extensions/BaseExtension.js","./Queue":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Queue.js","./Request":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Request.js","events":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/events/events.js","q":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/q.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/escape-regexp/index.js":[function(require,module,exports){
+},{"./Extensions/BaseExtension":5,"./Queue":17,"./Request":18,"events":39,"q":34}],22:[function(require,module,exports){
 
 /**
  * Escape regexp special characters in `str`.
@@ -3962,7 +3962,7 @@ module.exports = MockHttpRequest;
 module.exports = function(str){
   return String(str).replace(/([.*+?=^!:${}()|[\]\/\\])/g, '\\$1');
 };
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/asap/asap.js":[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 (function (process){
 
 // Use the fastest possible means to execute a task in a future turn
@@ -4079,7 +4079,7 @@ module.exports = asap;
 
 
 }).call(this,require('_process'))
-},{"_process":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/generic-collection.js":[function(require,module,exports){
+},{"_process":43}],24:[function(require,module,exports){
 "use strict";
 
 module.exports = GenericCollection;
@@ -4342,7 +4342,7 @@ GenericCollection.prototype.only = function () {
 require("./shim-array");
 
 
-},{"./shim-array":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-array.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/generic-order.js":[function(require,module,exports){
+},{"./shim-array":28}],25:[function(require,module,exports){
 
 var Object = require("./shim-object");
 
@@ -4399,7 +4399,7 @@ GenericOrder.prototype.compare = function (that, compare) {
 };
 
 
-},{"./shim-object":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-object.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/iterator.js":[function(require,module,exports){
+},{"./shim-object":30}],26:[function(require,module,exports){
 "use strict";
 
 module.exports = Iterator;
@@ -4944,7 +4944,7 @@ Iterator.DoneIteration = DoneIteration;
 Iterator.done = new DoneIteration();
 
 
-},{"./generic-collection":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/generic-collection.js","./weak-map":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/weak-map.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/node_modules/weak-map/weak-map.js":[function(require,module,exports){
+},{"./generic-collection":24,"./weak-map":33}],27:[function(require,module,exports){
 // Copyright (C) 2011 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -5631,7 +5631,7 @@ Iterator.done = new DoneIteration();
   }
 })();
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-array.js":[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 "use strict";
 
 /*
@@ -6007,7 +6007,7 @@ define("iterate", function (start, stop, step) {
 });
 
 
-},{"./generic-collection":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/generic-collection.js","./generic-order":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/generic-order.js","./iterator":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/iterator.js","./shim-function":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-function.js","weak-map":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/node_modules/weak-map/weak-map.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-function.js":[function(require,module,exports){
+},{"./generic-collection":24,"./generic-order":25,"./iterator":26,"./shim-function":29,"weak-map":27}],29:[function(require,module,exports){
 
 module.exports = Function;
 
@@ -6068,7 +6068,7 @@ Function.get = function (key) {
 };
 
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-object.js":[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 "use strict";
 
 var WeakMap = require("weak-map");
@@ -6587,7 +6587,7 @@ Object.clear = function (object) {
 };
 
 
-},{"weak-map":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/node_modules/weak-map/weak-map.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-regexp.js":[function(require,module,exports){
+},{"weak-map":27}],31:[function(require,module,exports){
 
 /**
     accepts a string; returns the string with regex metacharacters escaped.
@@ -6603,7 +6603,7 @@ if (!RegExp.escape) {
 }
 
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim.js":[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 
 var Array = require("./shim-array");
 var Object = require("./shim-object");
@@ -6611,10 +6611,10 @@ var Function = require("./shim-function");
 var RegExp = require("./shim-regexp");
 
 
-},{"./shim-array":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-array.js","./shim-function":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-function.js","./shim-object":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-object.js","./shim-regexp":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim-regexp.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/weak-map.js":[function(require,module,exports){
+},{"./shim-array":28,"./shim-function":29,"./shim-object":30,"./shim-regexp":31}],33:[function(require,module,exports){
 module.exports = require("weak-map");
 
-},{"weak-map":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/node_modules/weak-map/weak-map.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/q.js":[function(require,module,exports){
+},{"weak-map":27}],34:[function(require,module,exports){
 (function (process){
 /* vim:ts=4:sts=4:sw=4: */
 /*!
@@ -8421,7 +8421,7 @@ var qEndingLine = captureLine();
 
 
 }).call(this,require('_process'))
-},{"_process":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js","asap":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/asap/asap.js","collections/iterator":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/iterator.js","collections/shim":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/shim.js","collections/weak-map":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/node_modules/q/node_modules/collections/weak-map.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/index.js":[function(require,module,exports){
+},{"_process":43,"asap":23,"collections/iterator":26,"collections/shim":32,"collections/weak-map":33}],35:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -9473,7 +9473,7 @@ function decodeUtf8Char (str) {
   }
 }
 
-},{"base64-js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/node_modules/base64-js/lib/b64.js","ieee754":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/node_modules/ieee754/index.js","is-array":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/node_modules/is-array/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/node_modules/base64-js/lib/b64.js":[function(require,module,exports){
+},{"base64-js":36,"ieee754":37,"is-array":38}],36:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -9595,7 +9595,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	exports.fromByteArray = uint8ToBase64
 }(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/node_modules/ieee754/index.js":[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -9681,7 +9681,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/node_modules/is-array/index.js":[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 
 /**
  * isArray
@@ -9716,7 +9716,7 @@ module.exports = isArray || function (val) {
   return !! val && '[object Array]' == str.call(val);
 };
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/events/events.js":[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -10019,7 +10019,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/inherits/inherits_browser.js":[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -10044,12 +10044,12 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/isarray/index.js":[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/path-browserify/index.js":[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -10277,7 +10277,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+},{"_process":43}],43:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -10342,7 +10342,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/punycode/punycode.js":[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 (function (global){
 /*! http://mths.be/punycode v1.2.4 by @mathias */
 ;(function(root) {
@@ -10853,7 +10853,7 @@ process.chdir = function (dir) {
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/querystring-es3/decode.js":[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -10939,7 +10939,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/querystring-es3/encode.js":[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11026,16 +11026,16 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/querystring-es3/index.js":[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/querystring-es3/decode.js","./encode":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/querystring-es3/encode.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/duplex.js":[function(require,module,exports){
+},{"./decode":45,"./encode":46}],48:[function(require,module,exports){
 module.exports = require("./lib/_stream_duplex.js")
 
-},{"./lib/_stream_duplex.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_duplex.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_duplex.js":[function(require,module,exports){
+},{"./lib/_stream_duplex.js":49}],49:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -11128,7 +11128,7 @@ function forEach (xs, f) {
 }
 
 }).call(this,require('_process'))
-},{"./_stream_readable":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_readable.js","./_stream_writable":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_writable.js","_process":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js","core-util-is":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/node_modules/core-util-is/lib/util.js","inherits":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/inherits/inherits_browser.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_passthrough.js":[function(require,module,exports){
+},{"./_stream_readable":51,"./_stream_writable":53,"_process":43,"core-util-is":54,"inherits":40}],50:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11176,7 +11176,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./_stream_transform":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_transform.js","core-util-is":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/node_modules/core-util-is/lib/util.js","inherits":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/inherits/inherits_browser.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_readable.js":[function(require,module,exports){
+},{"./_stream_transform":52,"core-util-is":54,"inherits":40}],51:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -12162,7 +12162,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require('_process'))
-},{"_process":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js","buffer":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/index.js","core-util-is":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/node_modules/core-util-is/lib/util.js","events":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/events/events.js","inherits":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/inherits/inherits_browser.js","isarray":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/isarray/index.js","stream":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/stream-browserify/index.js","string_decoder/":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/node_modules/string_decoder/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_transform.js":[function(require,module,exports){
+},{"_process":43,"buffer":35,"core-util-is":54,"events":39,"inherits":40,"isarray":41,"stream":60,"string_decoder/":55}],52:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -12374,7 +12374,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./_stream_duplex":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_duplex.js","core-util-is":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/node_modules/core-util-is/lib/util.js","inherits":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/inherits/inherits_browser.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_writable.js":[function(require,module,exports){
+},{"./_stream_duplex":49,"core-util-is":54,"inherits":40}],53:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -12764,7 +12764,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require('_process'))
-},{"./_stream_duplex":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_duplex.js","_process":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js","buffer":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/index.js","core-util-is":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/node_modules/core-util-is/lib/util.js","inherits":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/inherits/inherits_browser.js","stream":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/stream-browserify/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/node_modules/core-util-is/lib/util.js":[function(require,module,exports){
+},{"./_stream_duplex":49,"_process":43,"buffer":35,"core-util-is":54,"inherits":40,"stream":60}],54:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -12874,7 +12874,7 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/node_modules/string_decoder/index.js":[function(require,module,exports){
+},{"buffer":35}],55:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13097,10 +13097,10 @@ function base64DetectIncompleteChar(buffer) {
   this.charLength = this.charReceived ? 3 : 0;
 }
 
-},{"buffer":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/buffer/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/passthrough.js":[function(require,module,exports){
+},{"buffer":35}],56:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
-},{"./lib/_stream_passthrough.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_passthrough.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/readable.js":[function(require,module,exports){
+},{"./lib/_stream_passthrough.js":50}],57:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Readable = exports;
 exports.Writable = require('./lib/_stream_writable.js');
@@ -13108,13 +13108,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_duplex.js","./lib/_stream_passthrough.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_passthrough.js","./lib/_stream_readable.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_readable.js","./lib/_stream_transform.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_transform.js","./lib/_stream_writable.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_writable.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/transform.js":[function(require,module,exports){
+},{"./lib/_stream_duplex.js":49,"./lib/_stream_passthrough.js":50,"./lib/_stream_readable.js":51,"./lib/_stream_transform.js":52,"./lib/_stream_writable.js":53}],58:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_transform.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/writable.js":[function(require,module,exports){
+},{"./lib/_stream_transform.js":52}],59:[function(require,module,exports){
 module.exports = require("./lib/_stream_writable.js")
 
-},{"./lib/_stream_writable.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/lib/_stream_writable.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/stream-browserify/index.js":[function(require,module,exports){
+},{"./lib/_stream_writable.js":53}],60:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13243,7 +13243,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/events/events.js","inherits":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/inherits/inherits_browser.js","readable-stream/duplex.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/duplex.js","readable-stream/passthrough.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/passthrough.js","readable-stream/readable.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/readable.js","readable-stream/transform.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/transform.js","readable-stream/writable.js":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/readable-stream/writable.js"}],"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/url/url.js":[function(require,module,exports){
+},{"events":39,"inherits":40,"readable-stream/duplex.js":48,"readable-stream/passthrough.js":56,"readable-stream/readable.js":57,"readable-stream/transform.js":58,"readable-stream/writable.js":59}],61:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13952,7 +13952,7 @@ function isNullOrUndefined(arg) {
   return  arg == null;
 }
 
-},{"punycode":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/punycode/punycode.js","querystring":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/querystring-es3/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/exterminate/browser/index.js":[function(require,module,exports){
+},{"punycode":44,"querystring":47}],62:[function(require,module,exports){
 var through = require('through');
 var Terminal = require('../vendor/term.js');
 var charSize = require('char-size');
@@ -14077,7 +14077,7 @@ module.exports = function (cols, rows, handler) {
     return tr;
 };
 
-},{"../vendor/term.js":"/home/peter/projects/remark-code-snippets/node_modules/exterminate/vendor/term.js","char-size":"/home/peter/projects/remark-code-snippets/node_modules/exterminate/node_modules/char-size/index.js","through":"/home/peter/projects/remark-code-snippets/node_modules/exterminate/node_modules/through/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/exterminate/node_modules/char-size/index.js":[function(require,module,exports){
+},{"../vendor/term.js":65,"char-size":63,"through":64}],63:[function(require,module,exports){
 module.exports = function (opts) {
     if (opts && typeof opts.appendChild === 'function') {
         opts = { target: opts }
@@ -14104,7 +14104,7 @@ module.exports = function (opts) {
     };
 };
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/exterminate/node_modules/through/index.js":[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -14211,7 +14211,7 @@ function through (write, end) {
 
 
 }).call(this,require('_process'))
-},{"_process":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js","stream":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/stream-browserify/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/exterminate/vendor/term.js":[function(require,module,exports){
+},{"_process":43,"stream":60}],65:[function(require,module,exports){
 /**
  * States
  */
@@ -18311,7 +18311,7 @@ if (typeof module !== 'undefined') {
   this.Terminal = Terminal;
 }
 
-},{"events":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/events/events.js"}],"/home/peter/projects/remark-code-snippets/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
+},{"events":39}],66:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.1
  * http://jquery.com/
@@ -27503,7 +27503,7 @@ return jQuery;
 
 }));
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/mustache/mustache.js":[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 /*!
  * mustache.js - Logic-less {{mustache}} templates with JavaScript
  * http://github.com/janl/mustache.js
@@ -28075,7 +28075,7 @@ return jQuery;
 
 }));
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/mux-demux/index.js":[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 var inject = require('./inject')
 var serializer = require('stream-serializer')
 
@@ -28083,7 +28083,7 @@ module.exports = inject(function (stream, opts) {
   return serializer(opts && opts.wrapper) (stream)
 })
 
-},{"./inject":"/home/peter/projects/remark-code-snippets/node_modules/mux-demux/inject.js","stream-serializer":"/home/peter/projects/remark-code-snippets/node_modules/mux-demux/node_modules/stream-serializer/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/mux-demux/inject.js":[function(require,module,exports){
+},{"./inject":69,"stream-serializer":71}],69:[function(require,module,exports){
 'use strict';
 
 var through = require('through')
@@ -28270,7 +28270,7 @@ function MuxDemux (opts, onConnection) {
 } //inject
 
 
-},{"duplex":"/home/peter/projects/remark-code-snippets/node_modules/mux-demux/node_modules/duplex/index.js","through":"/home/peter/projects/remark-code-snippets/node_modules/through/index.js","xtend":"/home/peter/projects/remark-code-snippets/node_modules/mux-demux/node_modules/xtend/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/mux-demux/node_modules/duplex/index.js":[function(require,module,exports){
+},{"duplex":70,"through":75,"xtend":72}],70:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -28418,7 +28418,7 @@ module.exports = function (write, end) {
 
 
 }).call(this,require('_process'))
-},{"_process":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js","stream":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/stream-browserify/index.js"}],"/home/peter/projects/remark-code-snippets/node_modules/mux-demux/node_modules/stream-serializer/index.js":[function(require,module,exports){
+},{"_process":43,"stream":60}],71:[function(require,module,exports){
 
 var EventEmitter = require('events').EventEmitter
 
@@ -28489,7 +28489,7 @@ exports.raw = function (stream) {
 }
 
 
-},{"events":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/events/events.js"}],"/home/peter/projects/remark-code-snippets/node_modules/mux-demux/node_modules/xtend/index.js":[function(require,module,exports){
+},{"events":39}],72:[function(require,module,exports){
 module.exports = extend
 
 function extend(target) {
@@ -28505,7 +28505,7 @@ function extend(target) {
 
     return target
 }
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/shoe/browser.js":[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 var Stream = require('stream');
 var sockjs = require('sockjs-client');
 var resolve = require('url').resolve;
@@ -28570,7 +28570,7 @@ module.exports = function (u, cb) {
     return stream;
 };
 
-},{"sockjs-client":"/home/peter/projects/remark-code-snippets/node_modules/shoe/node_modules/sockjs-client/sockjs.js","stream":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/stream-browserify/index.js","url":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/url/url.js"}],"/home/peter/projects/remark-code-snippets/node_modules/shoe/node_modules/sockjs-client/sockjs.js":[function(require,module,exports){
+},{"sockjs-client":74,"stream":60,"url":61}],74:[function(require,module,exports){
 /* SockJS client, version 0.3.1.7.ga67f.dirty, http://sockjs.org, MIT License
 
 Copyright (c) 2011-2012 VMware, Inc.
@@ -30895,7 +30895,7 @@ if (typeof module === 'object' && module && module.exports) {
 // [*] End of lib/all.js
 
 
-},{}],"/home/peter/projects/remark-code-snippets/node_modules/through/index.js":[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -31007,7 +31007,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/process/browser.js","stream":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/stream-browserify/index.js"}],"/home/peter/projects/remark-code-snippets/src/browser/main.js":[function(require,module,exports){
+},{"_process":43,"stream":60}],76:[function(require,module,exports){
 (function (global){
 var http = require('browser-http');
 var $ = require('jquery');
@@ -31018,6 +31018,7 @@ var terminal = require('./terminal')('/terminal');
 var slideShow;
 var slides = {};
 var activeSlide;
+var terminals = {};
 
 getSlidesMarkdown()
 // Then place the slides markdown where remark expects and start remark
@@ -31095,11 +31096,15 @@ function onAfterShowSlide(slideNo) {
 
 function setupSlide(idx) {
     var activeSlide = slides[idx] = {};
-    var cwd = $('.remark-visible .add-console')[0]; //One terminal per slide
-    if (cwd) {
-        cwd = $(cwd).text();
-        $('.remark-visible .add-console').remove();
-        activeSlide.terminal = terminal.create(cwd);
+    var terminalConfig = $('.remark-visible .add-terminal')[0]; //One terminal per slide
+    if (terminalConfig) {
+        $('.remark-visible .add-terminal').remove();
+        terminalConfig = JSON.parse($(terminalConfig).text());
+        if (terminalConfig.name) {
+             activeSlide.terminal = terminals[terminalConfig.name] = terminals[terminalConfig.name] || terminal.create(terminalConfig);
+         } else {
+            activeSlide.terminal = terminal.create(terminalConfig);
+        }
     }
     return activeSlide;
 }
@@ -31134,13 +31139,12 @@ function attachTerminal(activeSlide) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../render-slides":"/home/peter/projects/remark-code-snippets/src/render-slides.js","./terminal":"/home/peter/projects/remark-code-snippets/src/browser/terminal.js","browser-http":"/home/peter/projects/remark-code-snippets/node_modules/browser-http/lib/Http.js","jquery":"/home/peter/projects/remark-code-snippets/node_modules/jquery/dist/jquery.js","querystring":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/querystring-es3/index.js"}],"/home/peter/projects/remark-code-snippets/src/browser/terminal.js":[function(require,module,exports){
+},{"../render-slides":78,"./terminal":77,"browser-http":13,"jquery":66,"querystring":47}],77:[function(require,module,exports){
 var path = require('path');
 var shoe = require('shoe');
 var muxDemux = require('mux-demux');
 var through = require('through');
 var exterminate = require('exterminate');
-
 
 function Terminal(endpoint) {
     if (!(this instanceof Terminal)) return new Terminal(endpoint);
@@ -31149,9 +31153,9 @@ function Terminal(endpoint) {
     this.sock.pipe(this.mx).pipe(this.sock);
 }
 
-Terminal.prototype.create = function (cwd) {
+Terminal.prototype.create = function (config) {
     var term = exterminate(80, 25);
-    var sh = this.mx.createStream(cwd);
+    var sh = this.mx.createStream(config.cwd);
     sh.write('PS1=">";clear\n');
     term.pipe(sh).pipe(term);
     term.terminal.element.style['background-color'] = 'rgba(0, 0, 0, 0)';
@@ -31160,13 +31164,13 @@ Terminal.prototype.create = function (cwd) {
 
 module.exports = Terminal;
 
-},{"exterminate":"/home/peter/projects/remark-code-snippets/node_modules/exterminate/browser/index.js","mux-demux":"/home/peter/projects/remark-code-snippets/node_modules/mux-demux/index.js","path":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/path-browserify/index.js","shoe":"/home/peter/projects/remark-code-snippets/node_modules/shoe/browser.js","through":"/home/peter/projects/remark-code-snippets/node_modules/through/index.js"}],"/home/peter/projects/remark-code-snippets/src/render-slides.js":[function(require,module,exports){
+},{"exterminate":62,"mux-demux":68,"path":42,"shoe":73,"through":75}],78:[function(require,module,exports){
 var Mustache = require('mustache');
 var asyncMustache = require('async-mustache')({mustache: Mustache});
 
 var path = require('path');
 
-var codeSnippetTmpl = ".code-snippet[\n{{#name}}{{{name}}} {{#truncated}}(lines {{from}} to {{to}}){{/truncated}}{{/name}}\n\n```{{language}}\n{{{code}}}\n```\n\n{{#terminal}}.add-console[{{{cwd}}}]{{/terminal}}\n]\n";
+var codeSnippetTmpl = ".code-snippet[\n{{#name}}{{{name}}} {{#truncated}}(lines {{from}} to {{to}}){{/truncated}}{{/name}}\n\n```{{language}}\n{{{code}}}\n```\n\n{{#terminal}}.add-terminal[{{{terminalConfig}}}]{{/terminal}}\n]\n";
 
 function renderCodeSnippet(src, code, config) {
     var model = {
@@ -31177,11 +31181,13 @@ function renderCodeSnippet(src, code, config) {
 
     if (config.terminal) {
         model.terminal = true;
-        if (typeof config.terminal  === "string") {
-            model.cwd = config.terminal;
+        var terminalConfig = {};
+        if (config.terminal  === true) {
+            terminalConfig = JSON.stringify({ cwd: path.dirname(src) });
         } else {
-            model.cwd = path.dirname(src);
+            terminalConfig = config.terminal;
         }
+        model.terminalConfig = JSON.stringify(terminalConfig);
     }
 
     if (config.lines) {
@@ -31217,4 +31223,4 @@ module.exports = function (template, urlResolver, callback) {
     return asyncMustache.render(template, model);
 };
 
-},{"async-mustache":"/home/peter/projects/remark-code-snippets/node_modules/async-mustache/js/index.js","mustache":"/home/peter/projects/remark-code-snippets/node_modules/mustache/mustache.js","path":"/home/peter/projects/remark-code-snippets/node_modules/browserify/node_modules/path-browserify/index.js"}]},{},["/home/peter/projects/remark-code-snippets/src/browser/main.js"]);
+},{"async-mustache":1,"mustache":67,"path":42}]},{},[76]);

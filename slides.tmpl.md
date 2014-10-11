@@ -93,6 +93,19 @@ node main
 ]
 
 ---
+# Terminal Only
+
+.add-terminal[{
+	"cwd": "."
+}]
+
+```
+.add-terminal[{
+	"cwd": "."
+}]
+```
+
+---
 #code-snippet API
 
 - .bold[src] - .italic[String], project-relative path to the source file
@@ -103,7 +116,12 @@ node main
 
 - .bold[lines] - .italic[Array], line numbers, start and optional end
 
-- .bold[terminal] - .italic[Boolean], whetther to include a terminal
+- .bold[terminal] - .italic[Boolean|Object], whether to include a terminal or terminal config (see below)
+
+#Terminal API
+- .bold[cwd] - .italic[String], project-relative path ofthe terminals current working directory
+
+- .bold[name] - .italic[String], a name for sharing a terminal across slides
 
 ## .red[Warning]
 
@@ -113,11 +131,3 @@ Terminal is non-restricted and for user runnning the server
 #Getting Started
 
 Fork this project and replace examples and slides.tmpl.md
-
----
-{{#code-snippet}}
-{
-	"src": "examples/main.js",
-	"terminal": "."
-}
-{{/code-snippet}}

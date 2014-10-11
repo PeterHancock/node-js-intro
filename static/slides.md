@@ -54,7 +54,7 @@ var message = 'Code snippets run from terminal';
 console.log(message);
 ```
 
-.add-console[examples]
+.add-terminal["{\"cwd\":\"examples\"}"]
 ]
 ]
 ---
@@ -85,7 +85,7 @@ var message = 'Code snippets run from terminal';
 console.log(message);
 ```
 
-.add-console[examples]
+.add-terminal["{\"cwd\":\"examples\"}"]
 ]
 
 Click on terminal icon (top left) and run
@@ -95,6 +95,19 @@ node main
 ```
 
 ]
+
+---
+# Terminal Only
+
+.add-terminal[{
+	"cwd": "."
+}]
+
+```
+.add-terminal[{
+	"cwd": "."
+}]
+```
 
 ---
 #code-snippet API
@@ -107,7 +120,12 @@ node main
 
 - .bold[lines] - .italic[Array], line numbers, start and optional end
 
-- .bold[terminal] - .italic[Boolean], whetther to include a terminal
+- .bold[terminal] - .italic[Boolean|Object], whether to include a terminal or terminal config (see below)
+
+#Terminal API
+- .bold[cwd] - .italic[String], project-relative path ofthe terminals current working directory
+
+- .bold[name] - .italic[String], a name for sharing a terminal across slides
 
 ## .red[Warning]
 
@@ -117,16 +135,3 @@ Terminal is non-restricted and for user runnning the server
 #Getting Started
 
 Fork this project and replace examples and slides.tmpl.md
-
----
-.code-snippet[
-examples/main.js 
-
-```javascript
-var message = 'Code snippets run from terminal';
-
-console.log(message);
-```
-
-.add-console[.]
-]
