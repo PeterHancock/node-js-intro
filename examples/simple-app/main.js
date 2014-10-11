@@ -1,1 +1,1 @@
-console.log('Simple as ...');
+console.log('Hello %s!', process.argv[2] || 'world');

@@ -20,11 +20,15 @@ layout: false
 
 - What is node.js?
 
+
 - What is all the fuss about?
 
-- Where to start?
+
+- Getting started?
+
 
 - The Tools and Community
+
 
 - Back to the Browser
 ]
@@ -100,7 +104,6 @@ layout: false
 
 --
 
-
 .right-column[
 - IO is event-driven and non-blocking
 ]
@@ -112,7 +115,7 @@ layout: false
 ---
 template: inverse
 
-#Anatomy of a node.js application
+#Getting started
 
 ---
 #At it's simplest
@@ -133,34 +136,45 @@ template: inverse
 ```
 
 ---
-#How about  _real_  apps?
+#Building a  _real_ Node.js applications
 
-- Modular design
+--
 
-- Third party dependencies
+- Modular Design?
 
-- Building, testing etc
+--
+
+- Third Party Dependencies?
+
+--
+- Build Lifecycle - Build, Test, Deploy, Publish etc
 
 
 ---
-#jira-issue
+#A real (simple) example - _jira-client_
 
-module/cli app to retrieve the summary off a Jira issue
+Both a Node.js module and CLI app to retrieve the summary for a Jira issue
+
+- Module
+
+```javascript
+var JiraClient = require('jira-client');
+
+var jiraClient = new JiraClient(config /*user:, password: */);
+
+console.log(jiraClient.getIssue(key));
+
+```
+- CLI
 
 ```bash
 >jira-issue id-123
 
-id-123: WTF
+id-123: When I run 'jira-issue' something should happen
 ```
+
 
 - Use Jira's Rest API
-
-- Embeddable
-
-```javascript
-var JiraClient = require('jira-client');
-...
-```
 
 ---
 #package.json
@@ -173,8 +187,11 @@ Used by node and npm (and other tools) to build, test, publish etc
 }[[/code-snippet]]
 
 ---
-#Application code - main module
+name: main
+#The main module
 
+---
+template: main
 [[#code-snippet]]{
     "src": "examples/jira-issue/index.js",
     "lines": [1, 11],
@@ -182,8 +199,7 @@ Used by node and npm (and other tools) to build, test, publish etc
 }[[/code-snippet]]
 
 ---
-#Application code - main module
-
+template: main
 [[#code-snippet]]{
     "src": "examples/jira-issue/index.js",
     "lines": [13],
@@ -191,114 +207,120 @@ Used by node and npm (and other tools) to build, test, publish etc
 }[[/code-snippet]]
 
 ---
-#Application code - cli
+#The CLI script
 
 [[#code-snippet]]{
-    "src": "examples/jira-issue/bin/cli",
+    "src": "examples/jira-issue/bin/cli.js",
     "terminal": true
 }[[/code-snippet]]
 
 ---
+# Build Lifecycle
 
-
-layout: false
 .left-column[
-  ## Modules
-]
-
-.right-column[
-Node applications are composed of Modules:
-- Module loading follows CommonJS
-- Encapsulation/reuse
-]
-
----
-layout: false
-.left-column[
-  ## Modules
-  ### - Local
-]
-
-.right-column[
-- With any non-trivial app it helps to splitting into cohesive groups by function etc
-
-main.js
-```javascript
-var logger = require('logger')(true);
-
-logger.log('info');
-logger.error('error');
-```
-
-logger.js
-```javascript
-
-module.exports = function(level /* boolean */) {
-	if (level) {
-		return console;
-	} else {
-		return {
-			log: function() { /* NOP */ },
-			error: console.error.bind(console)
-		};
-	}
-};
-```
-
-Modules do not leak local vars, however global vars are just that (Lint tools can help us to exclude these)
-]
----
-.left-column[
-  ## Modules
-  ### - Local
-  ### - Third party modules
+  ### Build
 ]
 
 .right-column[
 
-
-NPM (Node Package Manager) is the defacto way to aquire modules (we will )
-
-```json
-{
-	"name": "node",
-	"version": "0.1.0"
-}
+```
+npm install
 ```
 
-```shell
-npm install -save underscore
-```
-
-```javascript
-var _ = require('underscore');
-
-console.log(_('123456').reverse());
-```
-
+[[#code-snippet]]{
+    "src": "examples/jira-issue/package.json",
+    "terminal": true,
+    "lines": [10]
+}[[/code-snippet]]
 ]
 
-npm downloads modules to node_modules
+---
+# Build Lifecycle
+
+.left-column[
+  ### Test
+]
+
+.right-column[
+
+```
+npm test
+```
+
+[[#code-snippet]]{
+    "src": "examples/jira-issue/package.json",
+    "terminal": true,
+    "lines": [6,8]
+}[[/code-snippet]]
+]
 
 ---
-#Builds
+# Build Lifecycle
 
-npm is your friend
+.left-column[
+  ### Test
+]
+
+.right-column[
+
+[[#code-snippet]]{
+    "src": "examples/jira-issue/test/JiraClientSpec.js",
+    "terminal": true,
+    "lines": [1,22]
+}[[/code-snippet]]
+]
+
+---
+# Build Lifecycle
+
+.left-column[
+  ### Test
+]
+
+.right-column[
+
+[[#code-snippet]]{
+    "src": "examples/jira-issue/test/JiraClientSpec.js",
+    "terminal": true,
+    "lines": [25
+    ]
+}[[/code-snippet]]
+]
+
+---
+.add-console[examples/jira-issue]
+
+# Build Lifecycle
+
+.left-column[
+  ### Publish to NPM
+]
+
+.right-column[
 
 ```
->npm init
+npm publish
 ```
+]
+---
+.add-console[examples/jira-issue]
+# Install 
+
+```
+npm install -g jira-issue
+```
+
 
 
 ---
 template: inverse
-#The Event Loop and non-blocking IO
+#The Event Loop
 
 
 
 ---
 layout: false
-## Event Loop and non-blocking IO
+## The Event Loop
 .left-column[
 ### Single threaded
 ]
@@ -309,7 +331,7 @@ Node code is executed in a single thread
 
 ---
 layout: false
-## Event Loop and non-blocking IO
+## The Event Loop
 .left-column[
 ### Single threaded
 ### IO is asyncronous

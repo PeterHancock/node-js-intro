@@ -19,11 +19,15 @@ layout: false
 
 - What is node.js?
 
+
 - What is all the fuss about?
 
-- Where to start?
+
+- Getting started?
+
 
 - The Tools and Community
+
 
 - Back to the Browser
 ]
@@ -99,7 +103,6 @@ layout: false
 
 --
 
-
 .right-column[
 - IO is event-driven and non-blocking
 ]
@@ -111,7 +114,7 @@ layout: false
 ---
 template: inverse
 
-#Anatomy of a node.js application
+#Getting started
 
 ---
 #At it's simplest
@@ -124,7 +127,7 @@ template: inverse
 examples/simple-app/main.js 
 
 ```javascript
-console.log('Simple as ...');
+console.log('Hello %s!', process.argv[2] || 'world');
 ```
 
 .add-console[examples/simple-app]
@@ -138,34 +141,45 @@ console.log('Simple as ...');
 ```
 
 ---
-#How about  _real_  apps?
+#Building a  _real_ Node.js applications
 
-- Modular design
+--
 
-- Third party dependencies
+- Modular Design?
 
-- Building, testing etc
+--
+
+- Third Party Dependencies?
+
+--
+- Build Lifecycle - Build, Test, Deploy, Publish etc
 
 
 ---
-#jira-issue
+#A real (simple) example - _jira-client_
 
-module/cli app to retrieve the summary off a Jira issue
+Both a Node.js module and CLI app to retrieve the summary for a Jira issue
+
+- Module
+
+```javascript
+var JiraClient = require('jira-client');
+
+var jiraClient = new JiraClient(config /*user:, password: */);
+
+console.log(jiraClient.getIssue(key));
+
+```
+- CLI
 
 ```bash
 >jira-issue id-123
 
-id-123: WTF
+id-123: When I run 'jira-issue' something should happen
 ```
+
 
 - Use Jira's Rest API
-
-- Embeddable
-
-```javascript
-var JiraClient = require('jira-client');
-...
-```
 
 ---
 #package.json
@@ -178,13 +192,13 @@ examples/jira-issue/package.json
 ```javascript
 {
   "name": "jira-issue",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Get summary for a Jira issue",
   "main": "index.js",
   "scripts": {
     "test": "jasmine-node test"
   },
-  "bin": "bin/cli",
+  "bin": "bin/cli.js",
   "dependencies": {
     "JSONStream": "^0.9.0",
     "mustache": "^0.8.2",
@@ -203,8 +217,11 @@ examples/jira-issue/package.json
 
 
 ---
-#Application code - main module
+name: main
+#The main module
 
+---
+template: main
 .code-snippet[
 examples/jira-issue/index.js (lines 1 to 11)
 
@@ -227,8 +244,7 @@ var JiraClient = function (config) {
 
 
 ---
-#Application code - main module
-
+template: main
 .code-snippet[
 examples/jira-issue/index.js (lines 13 to end)
 
@@ -260,10 +276,10 @@ module.exports = JiraClient;
 
 
 ---
-#Application code - cli
+#The CLI script
 
 .code-snippet[
-examples/jira-issue/bin/cli 
+examples/jira-issue/bin/cli.js 
 
 ```javascript
 #!/usr/bin/env node
@@ -280,7 +296,8 @@ var jiraClient = new JiraClient({ host: host, user: user, password: password });
 
 jiraClient.getIssue(key, function (err, issue) {
     if (err) {
-        return console.error(err);
+    	console.error(err);
+    	return console.error('Are your Jira credentails correct?');
     }
     console.log(mustache.render(': ', issue));
 });
@@ -292,106 +309,175 @@ jiraClient.getIssue(key, function (err, issue) {
 
 
 ---
+# Build Lifecycle
 
-
-layout: false
 .left-column[
-  ## Modules
+  ### Build
 ]
 
 .right-column[
-Node applications are composed of Modules:
-- Module loading follows CommonJS
-- Encapsulation/reuse
-]
 
----
-layout: false
-.left-column[
-  ## Modules
-  ### - Local
-]
-
-.right-column[
-- With any non-trivial app it helps to splitting into cohesive groups by function etc
-
-main.js
-```javascript
-var logger = require('logger')(true);
-
-logger.log('info');
-logger.error('error');
+```
+npm install
 ```
 
-logger.js
+.code-snippet[
+examples/jira-issue/package.json (lines 10 to end)
+
 ```javascript
-
-module.exports = function(level /* boolean */) {
-	if (level) {
-		return console;
-	} else {
-		return {
-			log: function() { /* NOP */ },
-			error: console.error.bind(console)
-		};
-	}
-};
-```
-
-Modules do not leak local vars, however global vars are just that (Lint tools can help us to exclude these)
-]
----
-.left-column[
-  ## Modules
-  ### - Local
-  ### - Third party modules
-]
-
-.right-column[
-
-
-NPM (Node Package Manager) is the defacto way to aquire modules (we will )
-
-```json
-{
-	"name": "node",
-	"version": "0.1.0"
+  "dependencies": {
+    "JSONStream": "^0.9.0",
+    "mustache": "^0.8.2",
+    "through": "^2.3.6"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.14.5",
+    "proxyquire": "^1.0.1"
+  }
 }
+
 ```
 
-```shell
-npm install -save underscore
-```
-
-```javascript
-var _ = require('underscore');
-
-console.log(_('123456').reverse());
-```
+.add-console[examples/jira-issue]
+]
 
 ]
 
-npm downloads modules to node_modules
+---
+# Build Lifecycle
+
+.left-column[
+  ### Test
+]
+
+.right-column[
+
+```
+npm test
+```
+
+.code-snippet[
+examples/jira-issue/package.json (lines 6 to 8)
+
+```javascript
+  "scripts": {
+    "test": "jasmine-node test"
+  },
+```
+
+.add-console[examples/jira-issue]
+]
+
+]
 
 ---
-#Builds
+# Build Lifecycle
 
-npm is your friend
+.left-column[
+  ### Test
+]
+
+.right-column[
+
+.code-snippet[
+examples/jira-issue/test/JiraClientSpec.js (lines 1 to 22)
+
+```javascript
+var proxyquire = require('proxyquire');
+var Readable = require('stream').Readable;
+var EventEmitter = require('events').EventEmitter;
+
+describe('JiraClient', function () {
+    it('getIssue works!', function (done) {
+        var key = 'PROJ-123', summary = "It's broke";
+        var mockJiraJson = JSON.stringify({
+            issues: [{ key: key, fields: { summary: summary} }]
+        });
+        var mockHttps = createMockHttps(mockJiraJson);
+        var JiraClient = proxyquire('../index.js',
+            { https: mockHttps });
+        var sut = new JiraClient({
+            host: 'whatever',
+            user: 'whatever',
+            password: '***'});
+        sut.getIssue(key, function (err, issue) {
+            expect(issue.summary).toBe(summary);
+            done();
+        });
+    });
+```
+
+.add-console[examples/jira-issue/test]
+]
+
+]
+
+---
+# Build Lifecycle
+
+.left-column[
+  ### Test
+]
+
+.right-column[
+
+.code-snippet[
+examples/jira-issue/test/JiraClientSpec.js (lines 25 to end)
+
+```javascript
+function createMockHttps(responseData) {
+    return {
+        get: function (opts, callback) {
+            var rs = new Readable;
+            rs.push(responseData);
+            rs.push(null);
+            callback(rs);
+            return new EventEmitter;
+        }
+    };
+}
 
 ```
->npm init
+
+.add-console[examples/jira-issue/test]
+]
+
+]
+
+---
+.add-console[examples/jira-issue]
+
+# Build Lifecycle
+
+.left-column[
+  ### Publish to NPM
+]
+
+.right-column[
+
 ```
+npm publish
+```
+]
+---
+.add-console[examples/jira-issue]
+# Install 
+
+```
+npm install -g jira-issue
+```
+
 
 
 ---
 template: inverse
-#The Event Loop and non-blocking IO
+#The Event Loop
 
 
 
 ---
 layout: false
-## Event Loop and non-blocking IO
+## The Event Loop
 .left-column[
 ### Single threaded
 ]
@@ -402,7 +488,7 @@ Node code is executed in a single thread
 
 ---
 layout: false
-## Event Loop and non-blocking IO
+## The Event Loop
 .left-column[
 ### Single threaded
 ### IO is asyncronous

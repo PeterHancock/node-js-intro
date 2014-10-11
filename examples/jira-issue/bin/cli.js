@@ -12,7 +12,8 @@ var jiraClient = new JiraClient({ host: host, user: user, password: password });
 
 jiraClient.getIssue(key, function (err, issue) {
     if (err) {
-        return console.error(err);
+    	console.error(err);
+    	return console.error('Are your Jira credentails correct?');
     }
     console.log(mustache.render('{{key}}: {{summary}}', issue));
 });

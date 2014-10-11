@@ -4,9 +4,11 @@ export JIRA_HOST=$host
 
 echo JIRA_USER:
 read user
-export JIRA_USER=$host
+export JIRA_USER=$user
 
 echo JIRA_PASSWORD:
 read -s password
 export JIRA_PASSWORD=$password
+
+echo $JIRA_HOST
 

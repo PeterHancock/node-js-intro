@@ -1,12 +1,12 @@
 {
   "name": "jira-issue",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Get summary for a Jira issue",
   "main": "index.js",
   "scripts": {
     "test": "jasmine-node test"
   },
-  "bin": "bin/cli",
+  "bin": "bin/cli.js",
   "dependencies": {
     "JSONStream": "^0.9.0",
     "mustache": "^0.8.2",
