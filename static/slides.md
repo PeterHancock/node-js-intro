@@ -130,7 +130,7 @@ examples/simple-app/main.js
 console.log('Hello %s!', process.argv[2] || 'world');
 ```
 
-.add-console[examples/simple-app]
+.add-terminal["{\"cwd\":\"examples/simple-app\"}"]
 ]
 
 
@@ -212,7 +212,7 @@ examples/jira-issue/package.json
 
 ```
 
-.add-console[examples/jira-issue]
+.add-terminal["{\"cwd\":\"examples/jira-issue\"}"]
 ]
 
 
@@ -239,7 +239,7 @@ var JiraClient = function (config) {
 };
 ```
 
-.add-console[examples/jira-issue]
+.add-terminal["{\"cwd\":\"examples/jira-issue\"}"]
 ]
 
 
@@ -271,7 +271,7 @@ module.exports = JiraClient;
 
 ```
 
-.add-console[examples/jira-issue]
+.add-terminal["{\"cwd\":\"examples/jira-issue\"}"]
 ]
 
 
@@ -299,12 +299,12 @@ jiraClient.getIssue(key, function (err, issue) {
     	console.error(err);
     	return console.error('Are your Jira credentails correct?');
     }
-    console.log(mustache.render(': ', issue));
+    console.log(mustache.render('{{key}}: {{summary}}', issue));
 });
 
 ```
 
-.add-console[examples/jira-issue/bin]
+.add-terminal["{\"cwd\":\"examples/jira-issue/bin\"}"]
 ]
 
 
@@ -338,7 +338,7 @@ examples/jira-issue/package.json (lines 10 to end)
 
 ```
 
-.add-console[examples/jira-issue]
+.add-terminal["{\"cwd\":\"examples/jira-issue\"}"]
 ]
 
 ]
@@ -365,7 +365,7 @@ examples/jira-issue/package.json (lines 6 to 8)
   },
 ```
 
-.add-console[examples/jira-issue]
+.add-terminal["{\"cwd\":\"examples/jira-issue\"}"]
 ]
 
 ]
@@ -407,7 +407,7 @@ describe('JiraClient', function () {
     });
 ```
 
-.add-console[examples/jira-issue/test]
+.add-terminal["{\"cwd\":\"examples/jira-issue/test\"}"]
 ]
 
 ]
@@ -439,7 +439,7 @@ function createMockHttps(responseData) {
 
 ```
 
-.add-console[examples/jira-issue/test]
+.add-terminal["{\"cwd\":\"examples/jira-issue/test\"}"]
 ]
 
 ]
@@ -520,7 +520,7 @@ main();
 
 ```
 
-.add-console[examples/eventLoop]
+.add-terminal["{\"cwd\":\"examples/eventLoop\"}"]
 ]
 
 
@@ -723,7 +723,7 @@ var shellCmd = argv.shell ? argv.shell : '/bin/bash -i';
 var server = http.createServer(ecstatic(__dirname));
 ```
 
-.add-console[.]
+.add-terminal["{\"cwd\":\".\"}"]
 ]
 
 
@@ -763,7 +763,7 @@ console.log("Listening on port " + port);
 if (argv.docker) {
 ```
 
-.add-console[.]
+.add-terminal["{\"cwd\":\".\"}"]
 ]
 
 
@@ -783,6 +783,7 @@ var terminal = require('./terminal')('/terminal');
 var slideShow;
 var slides = {};
 var activeSlide;
+var terminals = {};
 
 getSlidesMarkdown()
 // Then place the slides markdown where remark expects and start remark
@@ -797,10 +798,9 @@ getSlidesMarkdown()
     .then(setupSlideShow)
     .catch(function (err) { // Oh, here again :-)
         console.error(err);
-    });
 ```
 
-.add-console[src/browser]
+.add-terminal["{\"cwd\":\"src/browser\"}"]
 ]
 
 
@@ -812,6 +812,7 @@ getSlidesMarkdown()
 src/browser/main.js (lines 26 to 45)
 
 ```javascript
+
 function getSlidesMarkdown() {
     if (querystring.parse(global.location.search.substring(1)).dev) {
         // Load the slides template - A mustache template in a markdown format
@@ -831,10 +832,9 @@ function getSlidesMarkdown() {
             return response.data;
         });
     }
-}
 ```
 
-.add-console[src/browser]
+.add-terminal["{\"cwd\":\"src/browser\"}"]
 ]
 
 

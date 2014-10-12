@@ -14,7 +14,13 @@ function renderCodeSnippet(src, code, config) {
 
     if (config.terminal) {
         model.terminal = true;
-        model.cwd = path.dirname(src);
+        var terminalConfig = {};
+        if (config.terminal  === true) {
+            terminalConfig = JSON.stringify({ cwd: path.dirname(src) });
+        } else {
+            terminalConfig = config.terminal;
+        }
+        model.terminalConfig = JSON.stringify(terminalConfig);
     }
 
     if (config.lines) {
@@ -27,7 +33,6 @@ function renderCodeSnippet(src, code, config) {
             model.code = lines.slice(config.lines[0] - 1, config.lines[1]).join('\n');    
         }
     }
-
     return Mustache.render(codeSnippetTmpl, model);
 };
 

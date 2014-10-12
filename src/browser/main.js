@@ -7,6 +7,7 @@ var terminal = require('./terminal')('/terminal');
 var slideShow;
 var slides = {};
 var activeSlide;
+var terminals = {};
 
 getSlidesMarkdown()
 // Then place the slides markdown where remark expects and start remark
@@ -84,11 +85,15 @@ function onAfterShowSlide(slideNo) {
 
 function setupSlide(idx) {
     var activeSlide = slides[idx] = {};
-    var cwd = $('.remark-visible .add-console')[0]; //One terminal per slide
-    if (cwd) {
-        cwd = $(cwd).text();
-        $('.remark-visible .add-console').remove();
-        activeSlide.terminal = terminal.create(cwd);
+    var terminalConfig = $('.remark-visible .add-terminal')[0]; //One terminal per slide
+    if (terminalConfig) {
+        $('.remark-visible .add-terminal').remove();
+        terminalConfig = JSON.parse($(terminalConfig).text());
+        if (terminalConfig.name) {
+             activeSlide.terminal = terminals[terminalConfig.name] = terminals[terminalConfig.name] || terminal.create(terminalConfig);
+         } else {
+            activeSlide.terminal = terminal.create(terminalConfig);
+        }
     }
     return activeSlide;
 }
