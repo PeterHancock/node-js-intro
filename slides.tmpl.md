@@ -92,18 +92,6 @@ node main
 
 ]
 
----
-# Terminal Only
-
-.add-terminal[{
-	"cwd": "."
-}]
-
-```
-.add-terminal[{
-	"cwd": "."
-}]
-```
 
 ---
 #code-snippet API
@@ -116,8 +104,20 @@ node main
 
 - .bold[lines] - .italic[Array], line numbers, start and optional end
 
-- .bold[terminal] - .italic[Boolean|Object], whether to include a terminal or terminal config (see below)
+- .bold[terminal] - .italic[Boolean|Object], whether to include a terminal or terminal config (see Terminal API)
 
+---
+# Terminal Only
+
+.add-terminal[{
+	"cwd": "."
+}]
+
+```
+.add-terminal[{
+	"cwd": "."
+}]
+```
 #Terminal API
 - .bold[cwd] - .italic[String], project-relative path ofthe terminals current working directory
 

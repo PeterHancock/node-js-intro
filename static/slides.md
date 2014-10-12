@@ -54,7 +54,7 @@ var message = 'Code snippets run from terminal';
 console.log(message);
 ```
 
-.add-terminal["{\"cwd\":\"examples\"}"]
+.add-terminal[{"cwd":"examples"}]
 ]
 ]
 ---
@@ -85,7 +85,7 @@ var message = 'Code snippets run from terminal';
 console.log(message);
 ```
 
-.add-terminal["{\"cwd\":\"examples\"}"]
+.add-terminal[{"cwd":"examples"}]
 ]
 
 Click on terminal icon (top left) and run
@@ -95,6 +95,20 @@ node main
 ```
 
 ]
+
+
+---
+#code-snippet API
+
+- .bold[src] - .italic[String], project-relative path to the source file
+
+- .bold[display] - .italic[String|Boolean], an alternative name for the file or false for no name
+
+- .bold[language] - .italic[String], language 
+
+- .bold[lines] - .italic[Array], line numbers, start and optional end
+
+- .bold[terminal] - .italic[Boolean|Object], whether to include a terminal or terminal config (see Terminal API)
 
 ---
 # Terminal Only
@@ -108,20 +122,6 @@ node main
 	"cwd": "."
 }]
 ```
-
----
-#code-snippet API
-
-- .bold[src] - .italic[String], project-relative path to the source file
-
-- .bold[display] - .italic[String|Boolean], an alternative name for the file or false for no name
-
-- .bold[language] - .italic[String], language 
-
-- .bold[lines] - .italic[Array], line numbers, start and optional end
-
-- .bold[terminal] - .italic[Boolean|Object], whether to include a terminal or terminal config (see below)
-
 #Terminal API
 - .bold[cwd] - .italic[String], project-relative path ofthe terminals current working directory
 
