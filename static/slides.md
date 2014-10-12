@@ -130,7 +130,7 @@ examples/simple-app/main.js
 console.log('Hello %s!', process.argv[2] || 'world');
 ```
 
-.add-terminal["{\"cwd\":\"examples/simple-app\"}"]
+.add-terminal[{"cwd":"examples/simple-app"}]
 ]
 
 
@@ -212,7 +212,7 @@ examples/jira-issue/package.json
 
 ```
 
-.add-terminal["{\"cwd\":\"examples/jira-issue\"}"]
+.add-terminal[{"cwd":"examples/jira-issue"}]
 ]
 
 
@@ -239,7 +239,7 @@ var JiraClient = function (config) {
 };
 ```
 
-.add-terminal["{\"cwd\":\"examples/jira-issue\"}"]
+.add-terminal[{"cwd":"examples/jira-issue"}]
 ]
 
 
@@ -271,7 +271,7 @@ module.exports = JiraClient;
 
 ```
 
-.add-terminal["{\"cwd\":\"examples/jira-issue\"}"]
+.add-terminal[{"cwd":"examples/jira-issue"}]
 ]
 
 
@@ -304,7 +304,7 @@ jiraClient.getIssue(key, function (err, issue) {
 
 ```
 
-.add-terminal["{\"cwd\":\"examples/jira-issue/bin\"}"]
+.add-terminal[{"cwd":"examples/jira-issue/bin"}]
 ]
 
 
@@ -338,7 +338,7 @@ examples/jira-issue/package.json (lines 10 to end)
 
 ```
 
-.add-terminal["{\"cwd\":\"examples/jira-issue\"}"]
+.add-terminal[{"cwd":"examples/jira-issue"}]
 ]
 
 ]
@@ -365,7 +365,7 @@ examples/jira-issue/package.json (lines 6 to 8)
   },
 ```
 
-.add-terminal["{\"cwd\":\"examples/jira-issue\"}"]
+.add-terminal[{"cwd":"examples/jira-issue"}]
 ]
 
 ]
@@ -407,7 +407,7 @@ describe('JiraClient', function () {
     });
 ```
 
-.add-terminal["{\"cwd\":\"examples/jira-issue/test\"}"]
+.add-terminal[{"cwd":"examples/jira-issue/test"}]
 ]
 
 ]
@@ -439,7 +439,7 @@ function createMockHttps(responseData) {
 
 ```
 
-.add-terminal["{\"cwd\":\"examples/jira-issue/test\"}"]
+.add-terminal[{"cwd":"examples/jira-issue/test"}]
 ]
 
 ]
@@ -520,7 +520,7 @@ main();
 
 ```
 
-.add-terminal["{\"cwd\":\"examples/eventLoop\"}"]
+.add-terminal[{"cwd":"examples/eventLoop"}]
 ]
 
 
@@ -723,7 +723,7 @@ var shellCmd = argv.shell ? argv.shell : '/bin/bash -i';
 var server = http.createServer(ecstatic(__dirname));
 ```
 
-.add-terminal["{\"cwd\":\".\"}"]
+.add-terminal[{"cwd":"."}]
 ]
 
 
@@ -763,7 +763,7 @@ console.log("Listening on port " + port);
 if (argv.docker) {
 ```
 
-.add-terminal["{\"cwd\":\".\"}"]
+.add-terminal[{"cwd":"."}]
 ]
 
 
@@ -800,7 +800,7 @@ getSlidesMarkdown()
         console.error(err);
 ```
 
-.add-terminal["{\"cwd\":\"src/browser\"}"]
+.add-terminal[{"cwd":"src/browser"}]
 ]
 
 
@@ -834,7 +834,7 @@ function getSlidesMarkdown() {
     }
 ```
 
-.add-terminal["{\"cwd\":\"src/browser\"}"]
+.add-terminal[{"cwd":"src/browser"}]
 ]
 
 

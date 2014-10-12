@@ -31169,7 +31169,7 @@ var asyncMustache = require('async-mustache')({mustache: Mustache});
 
 var path = require('path');
 
-var codeSnippetTmpl = ".code-snippet[\n{{#name}}{{{name}}} {{#truncated}}(lines {{from}} to {{to}}){{/truncated}}{{/name}}\n\n```{{language}}\n{{{code}}}\n```\n\n{{#terminal}}.add-terminal[{{{terminalConfig}}}]{{/terminal}}\n]\n";
+var codeSnippetTmpl = ".code-snippet[\n{{#name}}{{{name}}} {{#truncated}}(lines {{from}} to {{to}}){{/truncated}}{{/name}}\n\n```{{language}}\n{{{code}}}\n```\n\n{{#terminal}}.add-terminal[{{{terminal}}}]{{/terminal}}\n]\n";
 
 function renderCodeSnippet(src, code, config) {
     var model = {
@@ -31179,14 +31179,16 @@ function renderCodeSnippet(src, code, config) {
     };
 
     if (config.terminal) {
-        model.terminal = true;
-        var terminalConfig = {};
+        var terminalConfig;
         if (config.terminal  === true) {
-            terminalConfig = JSON.stringify({ cwd: path.dirname(src) });
+            terminalConfig = { cwd: path.dirname(src) };
         } else {
             terminalConfig = config.terminal;
+            if (!terminalConfig.cwd) {
+                terminalConfig.cwd = path.dirname(src);
+            }
         }
-        model.terminalConfig = JSON.stringify(terminalConfig);
+        model.terminal = JSON.stringify(terminalConfig);
     }
 
     if (config.lines) {

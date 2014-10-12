@@ -13,14 +13,16 @@ function renderCodeSnippet(src, code, config) {
     };
 
     if (config.terminal) {
-        model.terminal = true;
-        var terminalConfig = {};
+        var terminalConfig;
         if (config.terminal  === true) {
-            terminalConfig = JSON.stringify({ cwd: path.dirname(src) });
+            terminalConfig = { cwd: path.dirname(src) };
         } else {
             terminalConfig = config.terminal;
+            if (!terminalConfig.cwd) {
+                terminalConfig.cwd = path.dirname(src);
+            }
         }
-        model.terminalConfig = JSON.stringify(terminalConfig);
+        model.terminal = JSON.stringify(terminalConfig);
     }
 
     if (config.lines) {
