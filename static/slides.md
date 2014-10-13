@@ -788,6 +788,7 @@ var slideShow;
 var slides = {};
 var activeSlide;
 var terminals = {};
+var terminalTransparency = 0.5;
 
 getSlidesMarkdown()
 // Then place the slides markdown where remark expects and start remark
@@ -801,7 +802,6 @@ getSlidesMarkdown()
     })
     .then(setupSlideShow)
     .catch(function (err) { // Oh, here again :-)
-        console.error(err);
 ```
 
 .add-terminal[{"cwd":"src/browser"}]
@@ -816,6 +816,7 @@ getSlidesMarkdown()
 src/browser/main.js (lines 26 to 45)
 
 ```javascript
+    });
 
 function getSlidesMarkdown() {
     if (querystring.parse(global.location.search.substring(1)).dev) {
@@ -835,7 +836,6 @@ function getSlidesMarkdown() {
         return http.get('static/slides.md').then(function (response) {
             return response.data;
         });
-    }
 ```
 
 .add-terminal[{"cwd":"src/browser"}]
