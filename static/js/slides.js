@@ -12162,7 +12162,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require('_process'))
-},{"_process":43,"buffer":35,"core-util-is":54,"events":39,"inherits":40,"isarray":41,"stream":59,"string_decoder/":60}],52:[function(require,module,exports){
+},{"_process":43,"buffer":35,"core-util-is":54,"events":39,"inherits":40,"isarray":41,"stream":60,"string_decoder/":55}],52:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -12764,7 +12764,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require('_process'))
-},{"./_stream_duplex":49,"_process":43,"buffer":35,"core-util-is":54,"inherits":40,"stream":59}],54:[function(require,module,exports){
+},{"./_stream_duplex":49,"_process":43,"buffer":35,"core-util-is":54,"inherits":40,"stream":60}],54:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -12875,153 +12875,6 @@ function objectToString(o) {
 }
 }).call(this,require("buffer").Buffer)
 },{"buffer":35}],55:[function(require,module,exports){
-module.exports = require("./lib/_stream_passthrough.js")
-
-},{"./lib/_stream_passthrough.js":50}],56:[function(require,module,exports){
-require('stream'); // hack to fix a circular dependency issue when used with browserify
-exports = module.exports = require('./lib/_stream_readable.js');
-exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
-
-},{"./lib/_stream_duplex.js":49,"./lib/_stream_passthrough.js":50,"./lib/_stream_readable.js":51,"./lib/_stream_transform.js":52,"./lib/_stream_writable.js":53,"stream":59}],57:[function(require,module,exports){
-module.exports = require("./lib/_stream_transform.js")
-
-},{"./lib/_stream_transform.js":52}],58:[function(require,module,exports){
-module.exports = require("./lib/_stream_writable.js")
-
-},{"./lib/_stream_writable.js":53}],59:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
-
-inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-},{"events":39,"inherits":40,"readable-stream/duplex.js":48,"readable-stream/passthrough.js":55,"readable-stream/readable.js":56,"readable-stream/transform.js":57,"readable-stream/writable.js":58}],60:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13244,7 +13097,153 @@ function base64DetectIncompleteChar(buffer) {
   this.charLength = this.charReceived ? 3 : 0;
 }
 
-},{"buffer":35}],61:[function(require,module,exports){
+},{"buffer":35}],56:[function(require,module,exports){
+module.exports = require("./lib/_stream_passthrough.js")
+
+},{"./lib/_stream_passthrough.js":50}],57:[function(require,module,exports){
+exports = module.exports = require('./lib/_stream_readable.js');
+exports.Readable = exports;
+exports.Writable = require('./lib/_stream_writable.js');
+exports.Duplex = require('./lib/_stream_duplex.js');
+exports.Transform = require('./lib/_stream_transform.js');
+exports.PassThrough = require('./lib/_stream_passthrough.js');
+
+},{"./lib/_stream_duplex.js":49,"./lib/_stream_passthrough.js":50,"./lib/_stream_readable.js":51,"./lib/_stream_transform.js":52,"./lib/_stream_writable.js":53}],58:[function(require,module,exports){
+module.exports = require("./lib/_stream_transform.js")
+
+},{"./lib/_stream_transform.js":52}],59:[function(require,module,exports){
+module.exports = require("./lib/_stream_writable.js")
+
+},{"./lib/_stream_writable.js":53}],60:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+module.exports = Stream;
+
+var EE = require('events').EventEmitter;
+var inherits = require('inherits');
+
+inherits(Stream, EE);
+Stream.Readable = require('readable-stream/readable.js');
+Stream.Writable = require('readable-stream/writable.js');
+Stream.Duplex = require('readable-stream/duplex.js');
+Stream.Transform = require('readable-stream/transform.js');
+Stream.PassThrough = require('readable-stream/passthrough.js');
+
+// Backwards-compat with node 0.4.x
+Stream.Stream = Stream;
+
+
+
+// old-style streams.  Note that the pipe method (the only relevant
+// part of this class) is overridden in the Readable class.
+
+function Stream() {
+  EE.call(this);
+}
+
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
+
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
+
+  source.on('data', ondata);
+
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
+
+  dest.on('drain', ondrain);
+
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
+
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    dest.end();
+  }
+
+
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
+
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
+
+  source.on('error', onerror);
+  dest.on('error', onerror);
+
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
+
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
+
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
+
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
+
+    dest.removeListener('close', cleanup);
+  }
+
+  source.on('end', cleanup);
+  source.on('close', cleanup);
+
+  dest.on('close', cleanup);
+
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
+};
+
+},{"events":39,"inherits":40,"readable-stream/duplex.js":48,"readable-stream/passthrough.js":56,"readable-stream/readable.js":57,"readable-stream/transform.js":58,"readable-stream/writable.js":59}],61:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -14212,7 +14211,7 @@ function through (write, end) {
 
 
 }).call(this,require('_process'))
-},{"_process":43,"stream":59}],65:[function(require,module,exports){
+},{"_process":43,"stream":60}],65:[function(require,module,exports){
 /**
  * States
  */
@@ -28419,7 +28418,7 @@ module.exports = function (write, end) {
 
 
 }).call(this,require('_process'))
-},{"_process":43,"stream":59}],71:[function(require,module,exports){
+},{"_process":43,"stream":60}],71:[function(require,module,exports){
 
 var EventEmitter = require('events').EventEmitter
 
@@ -28571,7 +28570,7 @@ module.exports = function (u, cb) {
     return stream;
 };
 
-},{"sockjs-client":74,"stream":59,"url":61}],74:[function(require,module,exports){
+},{"sockjs-client":74,"stream":60,"url":61}],74:[function(require,module,exports){
 /* SockJS client, version 0.3.1.7.ga67f.dirty, http://sockjs.org, MIT License
 
 Copyright (c) 2011-2012 VMware, Inc.
@@ -31008,7 +31007,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":43,"stream":59}],76:[function(require,module,exports){
+},{"_process":43,"stream":60}],76:[function(require,module,exports){
 (function (global){
 var http = require('browser-http');
 var $ = require('jquery');

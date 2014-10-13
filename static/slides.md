@@ -749,7 +749,7 @@ var websock = shoe(function(stream) {
                     columns: 200,
                     rows:35
                 });
-            shell.write('PS1=">";cd ' + mstream.meta + ';clear\n');
+            shell.write('cd ' + mstream.meta + ';clear\n');
             mstream
                 .pipe(shell)
                 .pipe(mstream);
@@ -764,7 +764,7 @@ websock.install(server, '/terminal');
 
 console.log("Listening on port " + port);
 
-if (argv.docker) {
+if (argv.shell) {
 ```
 
 .add-terminal[{"cwd":"."}]

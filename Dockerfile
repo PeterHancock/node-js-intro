@@ -6,10 +6,14 @@
 # docker run -it --rm <IMAGE_TAG>
 FROM node:0.10.32
 
-RUN mkdir -p /usr/src/app
+RUN apt-get -y install vim
 
-ADD . /usr/src/app
+ADD shell/.bashrc /
 
-WORKDIR /usr/src/app
+RUN mkdir -p /node-js-talk
+
+ADD . /node-js-talk
+
+WORKDIR /node-js-talk
 
 RUN git clean -d -x -f
