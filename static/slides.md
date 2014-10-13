@@ -130,7 +130,7 @@ examples/simple-app/main.js
 console.log('Hello %s!', process.argv[2] || 'world');
 ```
 
-.add-terminal[{"cwd":"examples/simple-app"}]
+.add-terminal[{"name":"simple-app","cwd":"examples/simple-app"}]
 ]
 
 
@@ -212,7 +212,7 @@ examples/jira-issue/package.json
 
 ```
 
-.add-terminal[{"cwd":"examples/jira-issue"}]
+.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue"}]
 ]
 
 
@@ -239,7 +239,7 @@ var JiraClient = function (config) {
 };
 ```
 
-.add-terminal[{"cwd":"examples/jira-issue"}]
+.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue"}]
 ]
 
 
@@ -271,7 +271,7 @@ module.exports = JiraClient;
 
 ```
 
-.add-terminal[{"cwd":"examples/jira-issue"}]
+.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue"}]
 ]
 
 
@@ -304,7 +304,7 @@ jiraClient.getIssue(key, function (err, issue) {
 
 ```
 
-.add-terminal[{"cwd":"examples/jira-issue/bin"}]
+.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue/bin"}]
 ]
 
 
@@ -338,7 +338,7 @@ examples/jira-issue/package.json (lines 10 to end)
 
 ```
 
-.add-terminal[{"cwd":"examples/jira-issue"}]
+.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue"}]
 ]
 
 ]
@@ -365,7 +365,7 @@ examples/jira-issue/package.json (lines 6 to 8)
   },
 ```
 
-.add-terminal[{"cwd":"examples/jira-issue"}]
+.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue"}]
 ]
 
 ]
@@ -407,7 +407,7 @@ describe('JiraClient', function () {
     });
 ```
 
-.add-terminal[{"cwd":"examples/jira-issue/test"}]
+.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue/test"}]
 ]
 
 ]
@@ -439,13 +439,15 @@ function createMockHttps(responseData) {
 
 ```
 
-.add-terminal[{"cwd":"examples/jira-issue/test"}]
+.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue/test"}]
 ]
 
 ]
 
 ---
-.add-console[examples/jira-issue]
+.add-terminal[{
+  "cwd": "examples/jira-issue"
+}]
 
 # Build Lifecycle
 
@@ -460,7 +462,9 @@ npm publish
 ```
 ]
 ---
-.add-console[examples/jira-issue]
+.add-terminal[{
+  "cwd": "examples/jira-issue"
+}]
 # Install 
 
 ```

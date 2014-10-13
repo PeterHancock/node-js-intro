@@ -126,7 +126,7 @@ template: inverse
 
 [[#code-snippet]]{
 	"src": "examples/simple-app/main.js",
-	"terminal": true
+	"terminal": { "name": "simple-app" }
 }[[/code-snippet]]
 
 - run it
@@ -183,7 +183,7 @@ Used by node and npm (and other tools) to build, test, publish etc
 
 [[#code-snippet]]{
     "src": "examples/jira-issue/package.json",
-    "terminal": true
+    "terminal": { "name": "jira-issue" }
 }[[/code-snippet]]
 
 ---
@@ -195,7 +195,7 @@ template: main
 [[#code-snippet]]{
     "src": "examples/jira-issue/index.js",
     "lines": [1, 11],
-    "terminal": true
+    "terminal": { "name": "jira-issue" }
 }[[/code-snippet]]
 
 ---
@@ -203,7 +203,7 @@ template: main
 [[#code-snippet]]{
     "src": "examples/jira-issue/index.js",
     "lines": [13],
-    "terminal": true
+     "terminal": { "name": "jira-issue" }
 }[[/code-snippet]]
 
 ---
@@ -211,7 +211,7 @@ template: main
 
 [[#code-snippet]]{
     "src": "examples/jira-issue/bin/cli.js",
-    "terminal": true
+     "terminal": { "name": "jira-issue" }
 }[[/code-snippet]]
 
 ---
@@ -229,7 +229,7 @@ npm install
 
 [[#code-snippet]]{
     "src": "examples/jira-issue/package.json",
-    "terminal": true,
+     "terminal": { "name": "jira-issue" },
     "lines": [10]
 }[[/code-snippet]]
 ]
@@ -249,7 +249,7 @@ npm test
 
 [[#code-snippet]]{
     "src": "examples/jira-issue/package.json",
-    "terminal": true,
+     "terminal": { "name": "jira-issue" },
     "lines": [6,8]
 }[[/code-snippet]]
 ]
@@ -265,7 +265,7 @@ npm test
 
 [[#code-snippet]]{
     "src": "examples/jira-issue/test/JiraClientSpec.js",
-    "terminal": true,
+     "terminal": { "name": "jira-issue" },
     "lines": [1,22]
 }[[/code-snippet]]
 ]
@@ -281,14 +281,16 @@ npm test
 
 [[#code-snippet]]{
     "src": "examples/jira-issue/test/JiraClientSpec.js",
-    "terminal": true,
+     "terminal": { "name": "jira-issue" },
     "lines": [25
     ]
 }[[/code-snippet]]
 ]
 
 ---
-.add-console[examples/jira-issue]
+.add-terminal[{
+  "cwd": "examples/jira-issue"
+}]
 
 # Build Lifecycle
 
@@ -303,7 +305,9 @@ npm publish
 ```
 ]
 ---
-.add-console[examples/jira-issue]
+.add-terminal[{
+  "cwd": "examples/jira-issue"
+}]
 # Install 
 
 ```
