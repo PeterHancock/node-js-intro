@@ -387,8 +387,8 @@ var proxyquire = require('proxyquire');
 var Readable = require('stream').Readable;
 var EventEmitter = require('events').EventEmitter;
 
-describe('JiraClient', function () {
-    it('getIssue works!', function (done) {
+describe('JiraClient.getIssue()', function () {
+    it('works for valid input!', function (done) {
         var key = 'PROJ-123', summary = "It's broke";
         var mockJiraJson = JSON.stringify({
             issues: [{ key: key, fields: { summary: summary} }]
