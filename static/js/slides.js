@@ -31019,6 +31019,7 @@ var slideShow;
 var slides = {};
 var activeSlide;
 var terminals = {};
+var terminalTransparency = 0.5;
 
 getSlidesMarkdown()
 // Then place the slides markdown where remark expects and start remark
@@ -31070,7 +31071,7 @@ function setupSlideShow(slideShow) {
 
     function addTerminalKeyHandler(event, method) {
         window.addEventListener(event, function(ev) {
-            if (activeSlide.terminal && activeSlide.terminalMode) {
+            if (activeSlide.terminal && activeSlide.terminalMode && activeSlide.terminalFocus) {
                 activeSlide.terminal.terminal[method](ev);
             }
         });
@@ -31078,6 +31079,12 @@ function setupSlideShow(slideShow) {
 
     addTerminalKeyHandler('keydown', 'keyDown');
     addTerminalKeyHandler('keypress', 'keyPress');
+
+    window.addEventListener('keypress', function(event) {
+        if (!activeSlide.terminalFocus) {
+            handleKeyPress(event);
+        }
+    });
 
     //Handle page refresh
     onAfterShowSlide(slideShow.getCurrentSlideNo());
@@ -31111,8 +31118,11 @@ function setupSlide(idx) {
 
 function attachTerminal(activeSlide) {
     var container = '.terminal-container';
-    var button = $('<div class="term-button">>_</div>').appendTo(container);
-    var term = $('<div class="term"></div>').appendTo(container);
+    var button = $('<div class="term-button">>_</div>')
+            .appendTo(container);
+    var term = $('<div class="term"></div>')
+            .appendTo(container);
+    adjustTerminalTransparency();
     activeSlide.terminal.appendTo('.term');
     if (activeSlide.terminalMode) {
         term.show();
@@ -31121,22 +31131,51 @@ function attachTerminal(activeSlide) {
         term.hide();
         button.show();
     }
-    $(container).click(function() {
-        if (activeSlide.terminalMode) {
-            term.hide();
-            button.show();
-            try {
-                slideShow.resume();
-            } catch (e) {/* remarkjs bug */ }
-        } else {
-            slideShow.pause();
-            term.show();
-            button.hide();
-        }
-        activeSlide.terminalMode = !activeSlide.terminalMode;
-    })
+    $(container)
+        .attr('tabindex',-1).css('outline',0)
+        .click(function(event) {
+            if (activeSlide.terminalMode && !event.ctrlKey) {
+                return;
+            }
+            if (activeSlide.terminalMode) {
+                term.hide();
+                button.show();
+                try {
+                    slideShow.resume();
+                } catch (e) {/* remarkjs bug */ }
+            } else {
+                slideShow.pause();
+                term.show();
+                button.hide();
+            }
+            activeSlide.terminalMode = !activeSlide.terminalMode;
+            activeSlide.terminalFocus = activeSlide.terminalMode;
+        })
+        .focus(function () {
+            activeSlide.terminalFocus = activeSlide.terminalMode;
+        })
+        .blur(function () {
+            activeSlide.terminalFocus = false;
+        })
+        .show();
     $('.terminal-container').show();
 }
+
+function handleKeyPress(event) {
+    switch (event.keyCode) {
+        case 45: 
+            terminalTransparency = Math.max(0, terminalTransparency - 0.05);
+            break;
+        case 61:
+            terminalTransparency = Math.min(1, terminalTransparency + 0.05);
+    }
+    adjustTerminalTransparency();
+    console.log(event);
+}
+
+function adjustTerminalTransparency() {
+    $('.term, .term-button').css('background-color', 'rgba(0, 0, 0, ' + terminalTransparency + ')');
+};
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../render-slides":78,"./terminal":77,"browser-http":13,"jquery":66,"querystring":47}],77:[function(require,module,exports){
