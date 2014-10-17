@@ -4,7 +4,7 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-#An Introduction to node.js
+#An Introduction to .green[Node.js]
 
 .footnote[
 	[nodejs.org - project site](http://nodejs.org/)
@@ -23,19 +23,19 @@ layout: false
 - What is all the fuss about?
 
 
-- Getting started?
+- How to get started
 
 
-- The Tools and Community
+- The Event Loop
 
 
-- Back to the Browser
+- Node.js for developing JS in the Browser
 ]
 
 ---
 template: inverse
 
-#What is node.js?
+#What is .green[Node.js]?
 
 ---
 layout: false
@@ -54,7 +54,7 @@ layout: false
 
 --
 .right-column[
-- Tools (*npm* registry http://registry.npmjs.org/)
+- Tools (**npm** - module registry http://registry.npmjs.org/)
 ]
 
 --
@@ -66,35 +66,39 @@ layout: false
 ---
 template: inverse
 
-#What is all the fuss about?
+#What is all the .green[Fuss] about?
 
 ---
 
 layout: false
+  ## What is all the fuss about?
 
 .left-column[
-  ## What is all the fuss about?
-  ### JavaScript
-]
-.right-column[
-- Cross platform - Browser, Server (Windows, OSX, *nix)
+
+  ### .green[JavaScript]
 ]
 
 --
 .right-column[
-- Browser devs have a route to server-side 
+- Cross-platform
+  - Browser
+  - Server (Windows, OSX, *nix)
+  - Mobile (Browser)
 ]
-
 --
 .right-column[
-- Server-side devs have an excuse to dabble with JS
+- Browser devs have an entry to the server-side 
+]
+--
+.right-column[
+- Server-side devs have an entry to JS
 ]
 
 ---
-.left-column[
   ## What is all the fuss about?
-  ### JavaScript
-  ### The Event Loop
+.left-column[
+
+  ### .green[The Event Loop]
 ]
 
 .right-column[
@@ -106,81 +110,92 @@ layout: false
 .right-column[
 - IO is event-driven and non-blocking
 ]
+
 --
 .right-column[
-- Designed to address the fact that most time is spent blocking on IO
+> Applications can spend a lot of time waiting on IO
 ]
 
 ---
 template: inverse
 
-#Getting started
+#Getting Started
 
 ---
-#At it's simplest
 
-- Install node.js (~5mins)
+- ##Install node.js
 
-- Create
+--
+
+- ##Create
 
 .code-snippet[
 examples/simple-app/main.js 
 
 ```javascript
-console.log('Hello %s!', process.argv[2] || 'world');
+console.log('Hello ' + (process.argv[2] || 'world') + '!');
 ```
 
 .add-terminal[{"name":"simple-app","cwd":"examples/simple-app"}]
 ]
 
 
-- run it
+--
+
+- ##Run
 
 ```shell
->node main
+node main
 ```
 
 ---
-#Building a  _real_ Node.js applications
+#Building .green[real] Node.js Applications
 
 --
 
-- Modular Design?
+- ##Modular design
 
 --
 
-- Third Party Dependencies?
+- ##Third party dependencies
 
 --
-- Build Lifecycle - Build, Test, Deploy, Publish etc
+- ##Build lifecycle - Build, Test, Deploy, Publish etc
 
 
 ---
-#A real (simple) example - _jira-client_
+#An example - .green[jira-client]
 
-Both a Node.js module and CLI app to retrieve the summary for a Jira issue
+- Both a Node.js module and CLI app to retrieve the summary for a Jira issue
 
-- Module
+--
+
+- Use Jira's Rest API
+
+--
+
+- Module - `require('jira-client')`
 
 ```javascript
 var JiraClient = require('jira-client');
 
 var jiraClient = new JiraClient(config /*user:, password: */);
 
-console.log(jiraClient.getIssue(key));
+jiraClient.getIssue(key, function (err, issue) {
+  if (err) ...
+  console.log(issue);
+});
 
 ```
-- CLI
+
+--
+- CLI - `jira-issue <KEY>`
 
 ```bash
->jira-issue id-123
+> jira-issue JI-123
 
-id-123: When I run 'jira-issue' something should happen
+JI-123: jira-issue should do something
 ```
-
-
-- Use Jira's Rest API
-
 ---
 #package.json
 
@@ -212,13 +227,13 @@ examples/jira-issue/package.json
 
 ```
 
-.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue"}]
+
 ]
 
 
 ---
 name: main
-#The main module
+#The Main Module
 
 ---
 template: main
@@ -239,7 +254,7 @@ var JiraClient = function (config) {
 };
 ```
 
-.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue"}]
+
 ]
 
 
@@ -271,12 +286,12 @@ module.exports = JiraClient;
 
 ```
 
-.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue"}]
+
 ]
 
 
 ---
-#The CLI script
+#The CLI Script
 
 .code-snippet[
 examples/jira-issue/bin/cli.js 
@@ -304,7 +319,7 @@ jiraClient.getIssue(key, function (err, issue) {
 
 ```
 
-.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue/bin"}]
+
 ]
 
 
@@ -465,7 +480,7 @@ npm publish
 .add-terminal[{
   "cwd": "examples/jira-issue"
 }]
-# Install 
+# Install Globally
 
 ```
 npm install -g jira-issue
@@ -475,52 +490,76 @@ npm install -g jira-issue
 
 ---
 template: inverse
-#The Event Loop
+#The .green[Event Loop]
 
+---
+#.red[The Problem]
+
+--
+- Our applications have to deal with many concurrent and long lived connections
+
+--
+
+- We ~~don't want to~~ can't manage multiple threads
+
+--
+
+- Most of the time server are waiting on IO (hitting the datastore)
+
+---
+#.green[The Solution]
+
+- A Single-threaded programming model with evented non-blocking IO 
+
+--
+
+- An implementation of the Reactor Pattern
+
+--
+
+Node.js delegates async operations to **c** extensions (libuv)
+
+```
+while (poll external events) { // Blocks whilst polling IO
+ push callback invocation to Event Queue // Stick this on the queue
+}
+```
+
+--
+
+The **Event Loop** is the *visible* process that:
+>Pops callbacks from the Event Queue and executes them in the main thread 
 
 
 ---
-layout: false
-## The Event Loop
-.left-column[
-### Single threaded
-]
-
-.right-column[
-Node code is executed in a single thread
-]
+template: inverse
+![The Event Loop](static/images/event-loop.png)
 
 ---
-layout: false
-## The Event Loop
-.left-column[
-### Single threaded
-### IO is asyncronous
-]
-
-.right-column[
-IO operations are non-blocking and evented
-]
----
-
-DIAGRAM
+>With the .green[Event Loop] we do not have to worry about orchestrating concurrent processess and we can focus on implementing what our applications actually do
 
 ---
-#Event loop in action:
+#The Event Loop in Action
 
 .code-snippet[
-examples/eventLoop/tick.js 
+examples/eventLoop/event-loop.js 
 
 ```javascript
-function main() {
-    process.stdout.write('enter main\n');
-    process.nextTick(function(){
-        process.stdout.write('done something...\n');
-    })
-    console.log('return from main');
-}
+var colors = require('colors');
 
-main();
+console.log('\n\u2193 Invoke "main"'.green);
+
+setTimeout(function () { // React to event
+    console.log('\u2193 Invoke "callback I"'.red)
+    console.log('\u2191 return\n'.red);
+}, 3000);
+
+setTimeout(function () { // React to event
+    console.log('\u2193 Invoke "callback II"'.yellow);
+    console.log('\u2191 return\n'.yellow);
+}, 1000);
+
+console.log('\u2191 return\n'.green);
 
 ```
 
@@ -528,28 +567,22 @@ main();
 ]
 
 
----
-Asyncronous IO
-The canonical TCP example
-Demonstrates
-- non-blocking IO
-- Many coneections/ process
 
 ---
-#Demo
+#A non-blocking web server
 .code-snippet[
 examples/async-io/server.js (lines 1 to 9)
 
 ```javascript
 var http = require('http');
-var url = require('url');
 var sleep = require('sleep');
-var fs = require('fs');
-var Q = require('q');
+var url = require('url');
+var extend = require('extend');
 var ecstatic = require('ecstatic')(__dirname + '/static');
 
 var config = require('./static/config.json');
-var ip = process.env.IP, port = process.env.PORT || 8080;
+
+var port = process.argv[2] || 8080;
 ```
 
 
@@ -557,29 +590,28 @@ var ip = process.env.IP, port = process.env.PORT || 8080;
 
 
 ---
-#Demo
+#A Non-blocking web server
 .code-snippet[
-examples/async-io/server.js (lines 11 to 29)
+examples/async-io/server.js (lines 10 to 27)
 
 ```javascript
-var start = function(nodeId) {
-	nodeId = nodeId || 1;
+
+var start = function(workerId) {
 	var server = http.createServer();
 	server.on('request', function(request, response) {
-		if ( url.parse(request.url).pathname === '/ajax') {
-			response.setHeader("Content-Type", "application/json");
-			var times = [now()];
-			blockingPhase(0.1);
-			return asyncPhase(config.async).done(function() {
-				blockingPhase(config.sync);
-				times.push(now());
-				response.end(JSON.stringify({ nodeId: nodeId, times: times }));
+		if ( url.parse(request.url).pathname === '/rest') {
+			var conf = extend({}, config, url.parse(request.url, true).query);
+			var times = [new Date().getTime()];
+			return asyncPhase(conf.async, function() {
+				blockingPhase(conf.sync);
+				times.push(new Date().getTime());
+				response.end(JSON.stringify({ workerId: workerId, times: times }));
 			});
 		}
 		ecstatic(request, response);
 	});
-	server.listen(port, ip);
-	console.log('node#' + nodeId + ' server listening on ' + port);
+	server.listen(port);
+	console.log('worker#' + workerId + ' server listening on ' + port);
 };
 ```
 
@@ -588,31 +620,25 @@ var start = function(nodeId) {
 
 
 ---
-#Demo
+#A Non-blocking web server
 .code-snippet[
-examples/async-io/server.js (lines 31 to end)
+examples/async-io/server.js (lines 28 to end)
 
 ```javascript
-function now() {
-	return new Date().getTime();
-}
-
-function asyncPhase(t) {
-	var deferred = Q.defer();
-	setTimeout(function () { deferred.resolve(); }, t * 1000/* milliseconds */);
-	return deferred.promise;
-}
 
 function blockingPhase(t) {
 	sleep.usleep(t * 1000000 /* microseconds */);
 }
 
+function asyncPhase(t, callback) {
+	setTimeout(callback, t * 1000/* milliseconds */);
+}
+
 if (require.main === module) {
-	start();
+	start(1);
 } else {
 	module.exports = start;
 }
-
 ```
 
 
@@ -621,25 +647,66 @@ if (require.main === module) {
 
 
 ---
-#What about my other 7 cores?
-The cluster module covers this- one node () handles requests and workers service the requests by being passed a handle to the connection
+template: inverse
 
-Demo
+#What about my other cores?
 
-web page visualizing
+---
+
+#The .green[Cluster] module - Poor person's load balancing
+
+--
+
+.code-snippet[
+examples/async-io/cluster.js (lines 1 to 10)
+
+```javascript
+var cluster = require('cluster');
+
+if (cluster.isMaster) {
+  var numWorkers = require('os').cpus().length - 1;
+  for (var i = 0; i < numWorkers; i++) {
+    cluster.fork({ workerId: i + 1 });
+  }
+} else {
+  require('./server')(process.env.workerId);
+}
+```
+
+
+]
+
+
+--
+.code-snippet[
+examples/async-io/server.js (lines 37 to end)
+
+```javascript
+if (require.main === module) {
+	start(1);
+} else {
+	module.exports = start;
+}
+```
+
+
+]
+
 
 ---
 template: inverse
 
 #Back to the Browser
 
-An example ...
+--
+
+##.green[This Slideshow!]
 
 ---
-#slides
+#package.json
 
 .code-snippet[
-package.json (lines 1 to 22)
+package.json (lines 1 to 21)
 
 ```javascript
 {
@@ -663,7 +730,6 @@ package.json (lines 1 to 22)
     "through": "^2.3.4",
     "minimist": "^1.1.0"
   },
-  "devDependencies": {
 ```
 
 
@@ -671,14 +737,15 @@ package.json (lines 1 to 22)
 
 
 ---
-#slides - server
+#package.json
 
-Building, testing (?!), and starting the server
+Building, Testing (?!), and Starting the Server
 
 .code-snippet[
-package.json (lines 23 to end)
+package.json (lines 22 to end)
 
 ```javascript
+  "devDependencies": {
     "browserify": "^5.11.1",
     "exterminate": "^1.4.1",
     "brfs": "~1.2.0",
@@ -707,10 +774,10 @@ package.json (lines 23 to end)
 
 
 ---
-#slides - server
+#The Server
 
 .code-snippet[
-server.js (lines 1 to 12)
+server.js (lines 1 to 14)
 
 ```javascript
 var http = require('http');
@@ -722,9 +789,11 @@ var argv = require('minimist')(process.argv.slice(2));
 
 var port = argv.p || 8080;
 
-var shellCmd = argv.shell ? argv.shell : '/bin/bash -i';
+var shellCmd =  argv.shell || '/bin/bash -i';
 
 var server = http.createServer(ecstatic(__dirname));
+
+server.listen(port);
 ```
 
 .add-terminal[{"cwd":"."}]
@@ -732,14 +801,12 @@ var server = http.createServer(ecstatic(__dirname));
 
 
 ---
-#slides - server
+#The Server
 
 .code-snippet[
-server.js (lines 14 to 40)
+server.js (lines 16 to 39)
 
 ```javascript
-server.listen(port);
-
 var websock = shoe(function(stream) {
     var shux = Shux();
     stream
@@ -764,7 +831,6 @@ websock.install(server, '/terminal');
 
 console.log("Listening on port " + port);
 
-if (argv.shell) {
 ```
 
 .add-terminal[{"cwd":"."}]
@@ -772,7 +838,7 @@ if (argv.shell) {
 
 
 ---
-#slides - browser
+#The Browser
 
 .code-snippet[
 src/browser/main.js (lines 1 to 24)
@@ -810,7 +876,7 @@ getSlidesMarkdown()
 
 
 ---
-#slides - browser
+#The Browser
 
 .code-snippet[
 src/browser/main.js (lines 26 to 45)
@@ -843,4 +909,65 @@ function getSlidesMarkdown() {
 
 
 ---
-References
+#Browserify
+
+
+.footnote[
+Browserify http://browserify.org/
+]
+--
+
+
+Transform Node.js modules to JavaScript (slides.js) for Browser
+
+--
+- Use the CommonJS module system (`module.exports`, `require()`)
+
+--
+
+- Get `require()` in the Browser
+
+--
+
+# .green[Resuse] in Server and Browser!
+---
+#Starting the Server
+
+.code-snippet[
+package.json (lines 31 to 40)
+
+```javascript
+  "scripts": {
+    "start": "node server",
+    "build": "npm run browserify && npm run render",
+    "start-dev": "npm run watch & node server",
+    "watch": "npm run watchify & npm run render-watch",
+    "browserify": "browserify -t brfs src/browser/main.js -o static/js/slides.js",
+    "watchify": "watchify -t brfs src/browser/main.js -o static/js/slides.js",
+    "render": "node render -i slides.tmpl.md -o static/slides.md",
+    "render-watch": "node render -i slides.tmpl.md -o static/slides.md -w"
+  },
+```
+
+
+]
+
+
+Build & Run
+```bash
+npm run build
+
+npm start [-p PORT] [--shell SHELL_CMD]
+```
+
+---
+template: inverse
+#.green[Thank you]
+
+.footnote[
+nodejs.org http://nodejs.org/
+
+remark.js https://github.com/gnab/remark
+
+remark code snippets https://github.com/PeterHancock/remark-code-snippets
+]

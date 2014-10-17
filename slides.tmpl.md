@@ -5,7 +5,7 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-#An Introduction to node.js
+#An Introduction to .green[Node.js]
 
 .footnote[
 	[nodejs.org - project site](http://nodejs.org/)
@@ -24,19 +24,19 @@ layout: false
 - What is all the fuss about?
 
 
-- Getting started?
+- How to get started
 
 
-- The Tools and Community
+- The Event Loop
 
 
-- Back to the Browser
+- Node.js for developing JS in the Browser
 ]
 
 ---
 template: inverse
 
-#What is node.js?
+#What is .green[Node.js]?
 
 ---
 layout: false
@@ -55,7 +55,7 @@ layout: false
 
 --
 .right-column[
-- Tools (*npm* registry http://registry.npmjs.org/)
+- Tools (**npm** - module registry http://registry.npmjs.org/)
 ]
 
 --
@@ -67,35 +67,39 @@ layout: false
 ---
 template: inverse
 
-#What is all the fuss about?
+#What is all the .green[Fuss] about?
 
 ---
 
 layout: false
+  ## What is all the fuss about?
 
 .left-column[
-  ## What is all the fuss about?
-  ### JavaScript
-]
-.right-column[
-- Cross platform - Browser, Server (Windows, OSX, *nix)
+
+  ### .green[JavaScript]
 ]
 
 --
 .right-column[
-- Browser devs have a route to server-side 
+- Cross-platform
+  - Browser
+  - Server (Windows, OSX, *nix)
+  - Mobile (Browser)
 ]
-
 --
 .right-column[
-- Server-side devs have an excuse to dabble with JS
+- Browser devs have an entry to the server-side 
+]
+--
+.right-column[
+- Server-side devs have an entry to JS
 ]
 
 ---
-.left-column[
   ## What is all the fuss about?
-  ### JavaScript
-  ### The Event Loop
+.left-column[
+
+  ### .green[The Event Loop]
 ]
 
 .right-column[
@@ -107,111 +111,118 @@ layout: false
 .right-column[
 - IO is event-driven and non-blocking
 ]
+
 --
 .right-column[
-- Designed to address the fact that most time is spent blocking on IO
+> Applications can spend a lot of time waiting on IO
 ]
 
 ---
 template: inverse
 
-#Getting started
+#Getting Started
 
 ---
-#At it's simplest
 
-- Install node.js (~5mins)
+- ##Install node.js
 
-- Create
+--
+
+- ##Create
 
 [[#code-snippet]]{
 	"src": "examples/simple-app/main.js",
 	"terminal": { "name": "simple-app" }
 }[[/code-snippet]]
 
-- run it
+--
+
+- ##Run
 
 ```shell
->node main
+node main
 ```
 
 ---
-#Building a  _real_ Node.js applications
+#Building .green[real] Node.js Applications
 
 --
 
-- Modular Design?
+- ##Modular design
 
 --
 
-- Third Party Dependencies?
+- ##Third party dependencies
 
 --
-- Build Lifecycle - Build, Test, Deploy, Publish etc
+- ##Build lifecycle - Build, Test, Deploy, Publish etc
 
 
 ---
-#A real (simple) example - _jira-client_
+#An example - .green[jira-client]
 
-Both a Node.js module and CLI app to retrieve the summary for a Jira issue
+- Both a Node.js module and CLI app to retrieve the summary for a Jira issue
 
-- Module
+--
+
+- Use Jira's Rest API
+
+--
+
+- Module - `require('jira-client')`
 
 ```javascript
 var JiraClient = require('jira-client');
 
 var jiraClient = new JiraClient(config /*user:, password: */);
 
-console.log(jiraClient.getIssue(key));
+jiraClient.getIssue(key, function (err, issue) {
+  if (err) ...
+  console.log(issue);
+});
 
 ```
-- CLI
+
+--
+- CLI - `jira-issue <KEY>`
 
 ```bash
->jira-issue id-123
+> jira-issue JI-123
 
-id-123: When I run 'jira-issue' something should happen
+JI-123: jira-issue should do something
 ```
-
-
-- Use Jira's Rest API
-
 ---
 #package.json
 
 Used by node and npm (and other tools) to build, test, publish etc
 
 [[#code-snippet]]{
-    "src": "examples/jira-issue/package.json",
-    "terminal": { "name": "jira-issue" }
+    "src": "examples/jira-issue/package.json"
 }[[/code-snippet]]
 
 ---
 name: main
-#The main module
+#The Main Module
 
 ---
 template: main
 [[#code-snippet]]{
     "src": "examples/jira-issue/index.js",
-    "lines": [1, 11],
-    "terminal": { "name": "jira-issue" }
+    "lines": [1, 11]
 }[[/code-snippet]]
 
 ---
 template: main
 [[#code-snippet]]{
     "src": "examples/jira-issue/index.js",
-    "lines": [13],
-     "terminal": { "name": "jira-issue" }
+    "lines": [13]
 }[[/code-snippet]]
 
 ---
-#The CLI script
+#The CLI Script
 
 [[#code-snippet]]{
-    "src": "examples/jira-issue/bin/cli.js",
-     "terminal": { "name": "jira-issue" }
+    "src": "examples/jira-issue/bin/cli.js"
 }[[/code-snippet]]
 
 ---
@@ -282,8 +293,7 @@ npm test
 [[#code-snippet]]{
     "src": "examples/jira-issue/test/JiraClientSpec.js",
      "terminal": { "name": "jira-issue" },
-    "lines": [25
-    ]
+    "lines": [25]
 }[[/code-snippet]]
 ]
 
@@ -308,7 +318,7 @@ npm publish
 .add-terminal[{
   "cwd": "examples/jira-issue"
 }]
-# Install 
+# Install Globally
 
 ```
 npm install -g jira-issue
@@ -318,126 +328,154 @@ npm install -g jira-issue
 
 ---
 template: inverse
-#The Event Loop
+#The .green[Event Loop]
 
+---
+#.red[The Problem]
+
+--
+- Our applications have to deal with many concurrent and long lived connections
+
+--
+
+- We ~~don't want to~~ can't manage multiple threads
+
+--
+
+- Most of the time server are waiting on IO (hitting the datastore)
+
+---
+#.green[The Solution]
+
+- A Single-threaded programming model with evented non-blocking IO 
+
+--
+
+- An implementation of the Reactor Pattern
+
+--
+
+Node.js delegates async operations to **c** extensions (libuv)
+
+```
+while (poll external events) { // Blocks whilst polling IO
+ push callback invocation to Event Queue // Stick this on the queue
+}
+```
+
+--
+
+The **Event Loop** is the *visible* process that:
+>Pops callbacks from the Event Queue and executes them in the main thread 
 
 
 ---
-layout: false
-## The Event Loop
-.left-column[
-### Single threaded
-]
-
-.right-column[
-Node code is executed in a single thread
-]
+template: inverse
+![The Event Loop](static/images/event-loop.png)
 
 ---
-layout: false
-## The Event Loop
-.left-column[
-### Single threaded
-### IO is asyncronous
-]
-
-.right-column[
-IO operations are non-blocking and evented
-]
----
-
-DIAGRAM
+>With the .green[Event Loop] we do not have to worry about orchestrating concurrent processess and we can focus on implementing what our applications actually do
 
 ---
-#Event loop in action:
+#The Event Loop in Action
 
 [[#code-snippet]]{
-	"src": "examples/eventLoop/tick.js",
+	"src": "examples/eventLoop/event-loop.js",
 	"terminal": true
 }[[/code-snippet]]
 
----
-Asyncronous IO
-The canonical TCP example
-Demonstrates
-- non-blocking IO
-- Many coneections/ process
 
 ---
-#Demo
+#A non-blocking web server
 [[#code-snippet]]{
     "src": "examples/async-io/server.js",
     "lines": [1, 9]
 }[[/code-snippet]]
 
 ---
-#Demo
+#A Non-blocking web server
 [[#code-snippet]]{
     "src": "examples/async-io/server.js",
-    "lines": [11, 29]
+    "lines": [10, 27]
 }[[/code-snippet]]
 
 ---
-#Demo
+#A Non-blocking web server
 [[#code-snippet]]{
     "src": "examples/async-io/server.js",
-    "lines": [31]
+    "lines": [28]
 }[[/code-snippet]]
 
 
 ---
-#What about my other 7 cores?
-The cluster module covers this- one node () handles requests and workers service the requests by being passed a handle to the connection
+template: inverse
 
-Demo
+#What about my other cores?
 
-web page visualizing
+---
+
+#The .green[Cluster] module - Poor person's load balancing
+
+--
+
+[[#code-snippet]]{
+    "src": "examples/async-io/cluster.js",
+    "lines": [1, 10]
+}[[/code-snippet]]
+
+--
+[[#code-snippet]]{
+    "src": "examples/async-io/server.js",
+    "lines": [37]
+}[[/code-snippet]]
 
 ---
 template: inverse
 
 #Back to the Browser
 
-An example ...
+--
+
+##.green[This Slideshow!]
 
 ---
-#slides
+#package.json
 
 [[#code-snippet]]{
 	"src": "package.json",
-	"lines": [1,22]
+	"lines": [1,21]
 }[[/code-snippet]]
 
 ---
-#slides - server
+#package.json
 
-Building, testing (?!), and starting the server
+Building, Testing (?!), and Starting the Server
 
 [[#code-snippet]]{
 	"src": "package.json",
-	"lines": [23]
+	"lines": [22]
 }[[/code-snippet]]
 
 ---
-#slides - server
+#The Server
 
 [[#code-snippet]]{
 	"src": "server.js",
 	"terminal": true,
-	"lines": [1, 12]
+	"lines": [1, 14]
 }[[/code-snippet]]
 
 ---
-#slides - server
+#The Server
 
 [[#code-snippet]]{
 	"src": "server.js",
 	"terminal": true,
-	"lines": [14, 40]
+	"lines": [16, 39]
 }[[/code-snippet]]
 
 ---
-#slides - browser
+#The Browser
 
 [[#code-snippet]]{
 	"src": "src/browser/main.js",
@@ -447,7 +485,7 @@ Building, testing (?!), and starting the server
 
 
 ---
-#slides - browser
+#The Browser
 
 [[#code-snippet]]{
 	"src": "src/browser/main.js",
@@ -456,4 +494,50 @@ Building, testing (?!), and starting the server
 }[[/code-snippet]]
 
 ---
-References
+#Browserify
+
+
+.footnote[
+Browserify http://browserify.org/
+]
+--
+
+
+Transform Node.js modules to JavaScript (slides.js) for Browser
+
+--
+- Use the CommonJS module system (`module.exports`, `require()`)
+
+--
+
+- Get `require()` in the Browser
+
+--
+
+# .green[Resuse] in Server and Browser!
+---
+#Starting the Server
+
+[[#code-snippet]]{
+  "src": "package.json",
+  "lines": [31, 40]
+}[[/code-snippet]]
+
+Build & Run
+```bash
+npm run build
+
+npm start [-p PORT] [--shell SHELL_CMD]
+```
+
+---
+template: inverse
+#.green[Thank you]
+
+.footnote[
+nodejs.org http://nodejs.org/
+
+remark.js https://github.com/gnab/remark
+
+remark code snippets https://github.com/PeterHancock/remark-code-snippets
+]

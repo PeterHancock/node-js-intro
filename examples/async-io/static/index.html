@@ -6,8 +6,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/async/0.9.0/async.js"></script>
-
-  <!--Load the AJAX API-->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/purl/2.3.1/purl.min.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript" src="spin.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.js"></script>
@@ -35,7 +34,8 @@
       function get(id) {
         var deferred = $.Deferred();
         var requestTime = new Date().getTime();
-        $.getJSON('ajax?' + (id)).done(
+        var search = window.location.search ? window.location.search + '&' + (id) : '?' + (id);
+        $.getJSON('rest' + search).done(
             function (response) {
               deferred.resolve( {id: id, requestTime: requestTime, response: response} );
           }
@@ -53,7 +53,7 @@
         dataTable.addColumn({ type: 'number', id: 'End' });
         var initTime = data[0].requestTime;
         var rows = _(data).map(function(request, i) {
-            return ['node#' + request.response.nodeId, 'request#' + request.id, request.response.times[0] - initTime,
+            return ['worker#' + request.response.workerId, 'request#' + request.id, request.response.times[0] - initTime,
                 request.response.times[1] - initTime];
         });
         dataTable.addRows(rows);
@@ -66,17 +66,17 @@
 
 $(function() {
   $.get('config.json', function(config) {
-
-     var reqTime = config.async + config.sync;
-
-     $('#info').append(Mustache.render($('#info_tmpl').text(), {
-        numRequests: numRequests,
-        async: config.async,
-        sync: config.sync,
-        upperTime: numRequests * reqTime,
-        reqTime: reqTime
-     }));
-
+    var query = purl(window.location.href);
+    var async = parseFloat(query.param('async')) || config.async;
+    var sync = parseFloat(query.param('sync')) || config.sync;
+    var reqTime = async + sync;
+    $('#info').append(Mustache.render($('#info_tmpl').text(), {
+      numRequests: numRequests,
+      async: async.toFixed(2),
+      sync: sync.toFixed(2),
+      upperTime: (numRequests * reqTime).toFixed(2),
+      reqTime: reqTime.toFixed(2)
+    }));
     $('#spinner').append(new Spinner({
       lines: 7,
       length: 17,
