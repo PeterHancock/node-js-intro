@@ -1,4 +1,4 @@
-A slide show introdicing Node.js
+A slideshow introducing Node.js
 ================================
 
 Installation
