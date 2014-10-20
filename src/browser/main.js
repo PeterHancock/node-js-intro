@@ -4,11 +4,20 @@ var querystring = require('querystring');
 var renderSlides = require('../render-slides');
 var terminal = require('./terminal')('/terminal');
 
+
 var slideShow;
 var slides = {};
 var activeSlide;
 var terminals = {};
 var terminalTransparency = 0.5;
+var terminalSupported = false;
+
+$('<span class="terminal-container" tabindex="-1"></span>').appendTo('body');
+
+terminal.on('open', function () {
+    terminalSupported = true;
+    $('.terminal-container').show();
+});
 
 getSlidesMarkdown()
 // Then place the slides markdown where remark expects and start remark
@@ -48,8 +57,6 @@ function getSlidesMarkdown() {
 
 
 function setupSlideShow(slideShow) {
-    $('body').append('<span class="terminal-container"></span>');
-
     slideShow.on('afterShowSlide', function (slide) {
         onAfterShowSlide(slide.number);
     });
@@ -77,6 +84,7 @@ function setupSlideShow(slideShow) {
 
     //Handle page refresh
     onAfterShowSlide(slideShow.getCurrentSlideNo());
+
 }
 
 function onAfterShowSlide(slideNo) {
@@ -121,7 +129,6 @@ function attachTerminal(activeSlide) {
         button.show();
     }
     $(container)
-        .attr('tabindex',-1).css('outline',0)
         .click(function(event) {
             if (activeSlide.terminalMode && !event.ctrlKey) {
                 return;
@@ -145,9 +152,11 @@ function attachTerminal(activeSlide) {
         })
         .blur(function () {
             activeSlide.terminalFocus = false;
-        })
-        .show();
-    $('.terminal-container').show();
+        });
+
+        if (terminalSupported) {
+            $(container).show();
+        }
 }
 
 function handleKeyPress(event) {

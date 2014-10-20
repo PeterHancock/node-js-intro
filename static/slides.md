@@ -850,24 +850,24 @@ var querystring = require('querystring');
 var renderSlides = require('../render-slides');
 var terminal = require('./terminal')('/terminal');
 
+
 var slideShow;
 var slides = {};
 var activeSlide;
 var terminals = {};
 var terminalTransparency = 0.5;
+var terminalSupported = false;
+
+$('<span class="terminal-container" tabindex="-1"></span>').appendTo('body');
+
+terminal.on('open', function () {
+    terminalSupported = true;
+    $('.terminal-container').show();
+});
 
 getSlidesMarkdown()
 // Then place the slides markdown where remark expects and start remark
     .then(function (slidesMd) {
-        $('#source').text(slidesMd);
-        slideShow = window.slideShow = remark.create({
-            highlightStyle: 'monokai',
-            highlightLanguage: 'remark'
-        });
-        return slideShow;
-    })
-    .then(setupSlideShow)
-    .catch(function (err) { // Oh, here again :-)
 ```
 
 .add-terminal[{"cwd":"src/browser"}]
@@ -882,6 +882,15 @@ getSlidesMarkdown()
 src/browser/main.js (lines 26 to 45)
 
 ```javascript
+        slideShow = window.slideShow = remark.create({
+            highlightStyle: 'monokai',
+            highlightLanguage: 'remark'
+        });
+        return slideShow;
+    })
+    .then(setupSlideShow)
+    .catch(function (err) { // Oh, here again :-)
+        console.error(err);
     });
 
 function getSlidesMarkdown() {
@@ -893,15 +902,6 @@ function getSlidesMarkdown() {
                     callback(null, response.data);
                 });
         }
-        return http.get('slides.tmpl.md')
-        // load and render any code snippets etc
-        .then(function (response) {
-            return renderSlides(response.data, urlResolver);
-        });
-    } else {
-        return http.get('static/slides.md').then(function (response) {
-            return response.data;
-        });
 ```
 
 .add-terminal[{"cwd":"src/browser"}]
