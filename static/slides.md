@@ -965,7 +965,9 @@ template: inverse
 #.green[Thank you]
 
 .footnote[
-nodejs.org http://nodejs.org/
+
+https://github.com/PeterHancock/node-js-intro
+
 
 remark.js https://github.com/gnab/remark
 
