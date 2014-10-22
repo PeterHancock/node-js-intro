@@ -17,19 +17,23 @@ layout: false
 ]
 .right-column[
 
-- What is node.js?
+- What is Node.js?
+
 
 
 - What is all the fuss about?
 
 
+
 - How to get started
+
 
 
 - The Event Loop
 
 
-- Node.js for developing JS in the Browser
+
+- Developing JavaScript for Browser with Node.js
 ]
 
 ---
@@ -41,7 +45,7 @@ template: inverse
 layout: false
 
 .left-column[
-  ## What is node.js?
+  ## What is Node.js?
 ]
 .right-column[
 - A cross-platform runtime environment for server-side and networking applications written in JavaScript
@@ -49,12 +53,15 @@ layout: false
 
 --
 .right-column[
-- Built on [V8](https://code.google.com/p/v8/), Chrome's JavaScript runtime
+- Built on [V8](https://code.google.com/p/v8/), Chrome's JavaScript interpreter/runtime
+
+
+- Extends V8 to provide server APIs (Filesystem, Newtork Sockets)
 ]
 
 --
 .right-column[
-- Tools (**npm** - module registry http://registry.npmjs.org/)
+- Tools - **npm** for accessing the module registry http://registry.npmjs.org/
 ]
 
 --
@@ -87,11 +94,11 @@ layout: false
 ]
 --
 .right-column[
-- Browser devs have an entry to the server-side 
+- Browser devs have one less barrier to the server-side 
 ]
 --
 .right-column[
-- Server-side devs have an entry to JS
+- Server-side devs have familiar runtime for learning JavaScript
 ]
 
 ---
@@ -113,9 +120,8 @@ layout: false
 
 --
 .right-column[
-> Applications can spend a lot of time waiting on IO
+> Node.js applications reduce the time spent waiting on IO
 ]
-
 ---
 template: inverse
 
@@ -123,7 +129,7 @@ template: inverse
 
 ---
 
-- ##Install node.js
+- ##Install Node.js
 
 --
 
@@ -480,12 +486,24 @@ npm publish
 .add-terminal[{
   "cwd": "examples/jira-issue"
 }]
+
 # Install Globally
 
 ```
 npm install -g jira-issue
 ```
 
+--
+
+.code-snippet[
+examples/jira-issue/package.json (lines 9 to 9)
+
+```javascript
+  "bin": "bin/cli.js",
+```
+
+.add-terminal[{"name":"jira-issue","cwd":"examples/jira-issue"}]
+]
 
 
 ---
@@ -496,39 +514,28 @@ template: inverse
 #.red[The Problem]
 
 --
-- Our applications have to deal with many concurrent and long lived connections
+- ###Our applications have to deal with many concurrent and long lived connections
 
 --
 
-- We ~~don't want to~~ can't manage multiple threads
+- ###We ~~don't want to~~ can't manage multiple threads
 
 --
 
-- Most of the time server are waiting on IO (hitting the datastore)
+- ###Most of the time server are waiting on IO (hitting the datastore)
 
 ---
 #.green[The Solution]
 
-- A Single-threaded programming model with evented non-blocking IO 
+- ###A Single-threaded programming model with evented non-blocking IO 
 
 --
 
-- An implementation of the Reactor Pattern
+- ###An implementation of the Reactor Pattern
 
 --
 
-Node.js delegates async operations to **c** extensions (libuv)
-
-```
-while (poll external events) { // Blocks whilst polling IO
- push callback invocation to Event Queue // Stick this on the queue
-}
-```
-
---
-
-The **Event Loop** is the *visible* process that:
->Pops callbacks from the Event Queue and executes them in the main thread 
+#?
 
 
 ---
