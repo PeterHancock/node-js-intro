@@ -17,5 +17,5 @@ Terminal configuration
 Running the examples terminal inside a Docker container:
 
 ```
-node server --shell 'docker run -it --rm <TAG> /bin/bash' 
+node server --shell 'docker run -it --rm IMAGE /bin/bash' 
 ```
