@@ -56,7 +56,7 @@ layout: false
 - Built on [V8](https://code.google.com/p/v8/), Chrome's JavaScript interpreter/runtime
 
 
-- Extends V8 to provide server APIs (Filesystem, Newtork Sockets)
+- Extends V8 to provide server APIs (Filesystem, Network Sockets)
 ]
 
 --
