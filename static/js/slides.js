@@ -31015,11 +31015,20 @@ var querystring = require('querystring');
 var renderSlides = require('../render-slides');
 var terminal = require('./terminal')('/terminal');
 
+
 var slideShow;
 var slides = {};
 var activeSlide;
 var terminals = {};
 var terminalTransparency = 0.5;
+var terminalSupported = false;
+
+$('<span class="terminal-container" tabindex="-1"></span>').appendTo('body');
+
+terminal.on('open', function () {
+    terminalSupported = true;
+    $('.terminal-container').show();
+});
 
 getSlidesMarkdown()
 // Then place the slides markdown where remark expects and start remark
@@ -31059,8 +31068,6 @@ function getSlidesMarkdown() {
 
 
 function setupSlideShow(slideShow) {
-    $('body').append('<span class="terminal-container"></span>');
-
     slideShow.on('afterShowSlide', function (slide) {
         onAfterShowSlide(slide.number);
     });
@@ -31088,6 +31095,7 @@ function setupSlideShow(slideShow) {
 
     //Handle page refresh
     onAfterShowSlide(slideShow.getCurrentSlideNo());
+
 }
 
 function onAfterShowSlide(slideNo) {
@@ -31132,7 +31140,6 @@ function attachTerminal(activeSlide) {
         button.show();
     }
     $(container)
-        .attr('tabindex',-1).css('outline',0)
         .click(function(event) {
             if (activeSlide.terminalMode && !event.ctrlKey) {
                 return;
@@ -31156,9 +31163,11 @@ function attachTerminal(activeSlide) {
         })
         .blur(function () {
             activeSlide.terminalFocus = false;
-        })
-        .show();
-    $('.terminal-container').show();
+        });
+
+        if (terminalSupported) {
+            $(container).show();
+        }
 }
 
 function handleKeyPress(event) {
@@ -31179,6 +31188,7 @@ function adjustTerminalTransparency() {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../render-slides":78,"./terminal":77,"browser-http":13,"jquery":66,"querystring":47}],77:[function(require,module,exports){
+var events = require('events');
 var path = require('path');
 var shoe = require('shoe');
 var muxDemux = require('mux-demux');
@@ -31186,11 +31196,17 @@ var through = require('through');
 var exterminate = require('exterminate');
 
 function Terminal(endpoint) {
+	var scope = this;
     if (!(this instanceof Terminal)) return new Terminal(endpoint);
     this.sock = shoe(endpoint);
+    this.sock.sock.addEventListener('open', function () {
+  	    scope.emit('open');
+    });
     this.mx = muxDemux();
     this.sock.pipe(this.mx).pipe(this.sock);
 }
+
+Terminal.prototype = new events.EventEmitter();
 
 Terminal.prototype.create = function (config) {
     var term = exterminate(80, 25);
@@ -31201,7 +31217,7 @@ Terminal.prototype.create = function (config) {
 
 module.exports = Terminal;
 
-},{"exterminate":62,"mux-demux":68,"path":42,"shoe":73,"through":75}],78:[function(require,module,exports){
+},{"events":39,"exterminate":62,"mux-demux":68,"path":42,"shoe":73,"through":75}],78:[function(require,module,exports){
 var Mustache = require('mustache');
 var asyncMustache = require('async-mustache')({mustache: Mustache});
 

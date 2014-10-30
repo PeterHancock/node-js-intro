@@ -7,7 +7,7 @@ var argv = require('minimist')(process.argv.slice(2));
 
 var port = argv.p || 8080;
 
-var shellCmd = argv.shell ? argv.shell : '/bin/bash -i';
+var shellCmd =  argv.shell || '/bin/bash -i';
 
 var server = http.createServer(ecstatic(__dirname));
 
@@ -37,7 +37,7 @@ websock.install(server, '/terminal');
 
 console.log("Listening on port " + port);
 
-if (argv.docker) {
+if (argv.shell) {
     process.on('SIGINT', function() {
         console.log('\n Don\'t forget Docker cleanup!');
         process.exit(1);
