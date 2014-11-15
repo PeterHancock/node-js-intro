@@ -26,13 +26,13 @@ function renderCodeSnippet(src, code, config) {
     }
 
     if (config.highlight || config.lines) {
-        model.code = _transformLines(code, config);
+        model.code = _transformLines(code, config, model);
     }
 
     return Mustache.render(codeSnippetTmpl, model);
 };
 
-function _transformLines(code, config) {
+function _transformLines(code, config, model) {
     var lines = code.split('\n');
     if (config.highlight) {
         var highlighted = _createMask(lines.length, config.highlight);
