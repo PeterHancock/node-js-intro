@@ -31257,7 +31257,7 @@ function _transformLines(code, config, model) {
         var highlighted = _createMask(lines.length, config.highlight);
         var lastLine = config.highlight[1];
         lines = lines.map(function (line, index) {
-            return highlighted[index] ? '* ' + line : line;
+            return highlighted[index] ? '*' + line : line;
         });
     }
     if (config.lines) {
