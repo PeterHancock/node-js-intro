@@ -10,3 +10,14 @@
   color:#999;
   margin:0px;
 }
+
+.remark-code-line-highlighted {
+	transition-duration: 1s;
+	transition-timing-function: ease;
+}
+
+.remark-code-line-highlighted:hover {
+	transition-duration: 0.5s;
+	transition-timing-function: ease;
+	transform:scale(1.2, 1.2);
+}

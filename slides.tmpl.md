@@ -221,14 +221,16 @@ template: main
 template: main
 [[#code-snippet]]{
     "src": "examples/jira-issue/index.js",
-    "lines": [13]
+    "lines": [13],
+    "highlight": [[13,15], [25], [31]]
 }[[/code-snippet]]
 
 ---
 #The CLI Script
 
 [[#code-snippet]]{
-    "src": "examples/jira-issue/bin/cli.js"
+    "src": "examples/jira-issue/bin/cli.js",
+    "highlight": [[6], [11], [13]]
 }[[/code-snippet]]
 
 ---
@@ -283,7 +285,8 @@ npm test
 [[#code-snippet]]{
     "src": "examples/jira-issue/test/JiraClientSpec.js",
      "terminal": { "name": "jira-issue" },
-    "lines": [1,22]
+    "lines": [1,22],
+    "highlight": [[1], [12,13]]
 }[[/code-snippet]]
 ]
 
