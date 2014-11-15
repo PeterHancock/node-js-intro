@@ -270,7 +270,7 @@ template: main
 examples/jira-issue/index.js (lines 13 to end)
 
 ```javascript
-* JiraClient.prototype.getIssue = function (key, callback/*(err, result)*/) {
+*JiraClient.prototype.getIssue = function (key, callback/*(err, result)*/) {
     if (!key) throw 'No key specified';
 
     var opts = url.parse('https://' + this.host + '/rest/api/2/search?jql=key=' + key);
@@ -282,13 +282,13 @@ examples/jira-issue/index.js (lines 13 to end)
             .pipe(JSONStream.parse('issues.*'))
             .pipe(through(function (issue) {
                 if (key === issue.key) {
-*                     callback(null, { key: issue.key, summary: issue.fields.summary });
+*                    callback(null, { key: issue.key, summary: issue.fields.summary });
                 }
             }));
     }).on('error', callback);
  };
 
-* module.exports = JiraClient;
+*module.exports = JiraClient;
 
 ```
 
@@ -308,14 +308,14 @@ var JiraClient = require('../index.js');
 
 var mustache = require('mustache');
 
-* var host = process.env.JIRA_HOST || process.argv[3];
+*var host = process.env.JIRA_HOST || process.argv[3];
 var key = process.argv[2];
 var user = process.env.JIRA_USER;
 var password = process.env.JIRA_PASSWORD;
 
-* var jiraClient = new JiraClient({ host: host, user: user, password: password });
+*var jiraClient = new JiraClient({ host: host, user: user, password: password });
 
-* jiraClient.getIssue(key, function (err, issue) {
+*jiraClient.getIssue(key, function (err, issue) {
     if (err) {
     	console.error(err);
     	return console.error('Are your Jira credentails correct?');
@@ -404,7 +404,7 @@ examples/jira-issue/package.json (lines 6 to 8)
 examples/jira-issue/test/JiraClientSpec.js (lines 1 to 22)
 
 ```javascript
-* var proxyquire = require('proxyquire');
+*var proxyquire = require('proxyquire');
 var Readable = require('stream').Readable;
 var EventEmitter = require('events').EventEmitter;
 
@@ -415,8 +415,8 @@ describe('JiraClient.getIssue()', function () {
             issues: [{ key: key, fields: { summary: summary} }]
         });
         var mockHttps = createMockHttps(mockJiraJson);
-*         var JiraClient = proxyquire('../index.js',
-*             { https: mockHttps });
+*        var JiraClient = proxyquire('../index.js',
+*            { https: mockHttps });
         var sut = new JiraClient({
             host: 'whatever',
             user: 'whatever',
