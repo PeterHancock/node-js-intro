@@ -25,18 +25,49 @@ function renderCodeSnippet(src, code, config) {
         model.terminal = JSON.stringify(terminalConfig);
     }
 
+    if (config.highlight || config.lines) {
+        model.code = _transformLines(code, config, model);
+    }
+
+    return Mustache.render(codeSnippetTmpl, model);
+};
+
+function _transformLines(code, config, model) {
+    var lines = code.split('\n');
+    if (config.highlight) {
+        var highlighted = _createMask(lines.length, config.highlight);
+        var lastLine = config.highlight[1];
+        lines = lines.map(function (line, index) {
+            return highlighted[index] ? '* ' + line : line;
+        });
+    }
     if (config.lines) {
-        var lines = code.split('\n');
         config.lines[1] = config.lines[1] || lines.length;
         if (lines.length  > config.lines[1] || config.lines[0] > 1) {
             model.truncated = true;
             model.from = config.lines[0];
             model.to = config.lines[1] >= lines.length ? 'end' : config.lines[1];
-            model.code = lines.slice(config.lines[0] - 1, config.lines[1]).join('\n');    
+            lines = lines.slice(config.lines[0] - 1, config.lines[1]);
         }
     }
-    return Mustache.render(codeSnippetTmpl, model);
-};
+    return lines.join('\n');
+}
+
+function _createMask(size, ranges) {
+    var mask = Array.apply(null, Array(size));
+    ranges.forEach(function (range) {
+        var line = 0;
+        var firstLine = range[0];
+        var lastLine = range[1] || firstLine;
+        if (firstLine > lastLine) {
+            return;
+        }
+        for (line = firstLine; line <= lastLine; line++) {
+                mask[line - 1] = true;
+        }
+    });
+    return mask;
+}
 
 function createModel (urlResolver) {
     return {'code-snippet': asyncMustache.async(function (text, render, callback) {
