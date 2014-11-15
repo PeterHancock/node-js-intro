@@ -39,7 +39,7 @@ console.log("Listening on port " + port);
 
 if (argv.shell) {
     process.on('SIGINT', function() {
-        console.log('\n Don\'t forget Docker cleanup!');
+        console.log('\n Don\'t forget any shell cleanup!');
         process.exit(1);
     });
 }

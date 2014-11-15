@@ -7,8 +7,8 @@ class: center, middle, inverse
 .footnote[
 	[project on Github](https://github.com/PeterHancock/remark-code-snippets.git)
 ]
-
 ---
+
 layout: false
 .left-column[
   ##  By example
@@ -70,8 +70,8 @@ layout: false
 {{=<% %>=}}
 {{#code-snippet}}
 {
-	"src": "examples/main.js",
-	"terminal": true
+    "src": "examples/main.js",
+    "terminal": true
 }
 {{/code-snippet}}
 <%={{ }}=%>
@@ -90,6 +90,8 @@ Click on terminal icon (top left) and run
 node main
 ```
 
+Ctrl + click on the terminal to close
+
 ]
 
 
@@ -98,16 +100,29 @@ node main
 
 - .bold[src] - .italic[String], project-relative path to the source file
 
-- .bold[display] - .italic[String|Boolean], an alternative name for the file or false for no name
+- .bold[[display]] - .italic[String|Boolean], an alternative name for the file or false for no name
 
-- .bold[language] - .italic[String], language 
+- .bold[[language]] - .italic[String], language
 
-- .bold[lines] - .italic[Array], line numbers, start and optional end
+- .bold[[lines]] - .italic[Array], line numbers, start and optional end
 
-- .bold[terminal] - .italic[Boolean|Object], whether to include a terminal or terminal config (see Terminal API)
+- .bold[[highlight]] - .italic[Array[Array]], An Array of lines to highlight
+
+- .bold[[terminal]] - .italic[Boolean|Object], whether to include a terminal or terminal config (see Terminal API)
 
 ---
-# Terminal Only
+# The Terminal
+.red[
+## Warning
+By default, the terminal session has the same permissions as the process serving the slideshow.
+]
+
+This can be configured using the **shell** option when starting the server (see the project's README).
+
+##Configuration and Control
+
+
+To add a terminal to a slide without a code snippet use
 
 .add-terminal[{
 	"cwd": "."
@@ -118,14 +133,16 @@ node main
 	"cwd": "."
 }]
 ```
-#Terminal API
+
+The transparency of ther terminal can be controlled with the **-** and **+** keys (when focus is not on the terminal).
+
+---
+#The Terminal
+
+##API
 - .bold[cwd] - .italic[String], project-relative path ofthe terminals current working directory
 
 - .bold[name] - .italic[String], a name for sharing a terminal across slides
-
-## .red[Warning]
-
-Terminal is non-restricted and for user runnning the server
 
 ---
 #Getting Started
