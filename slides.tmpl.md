@@ -222,7 +222,7 @@ template: main
 [[#code-snippet]]{
     "src": "examples/jira-issue/index.js",
     "lines": [13],
-    "highlight": [[13,15], [25], [31]]
+    "highlight": [[13], [25], [31]]
 }[[/code-snippet]]
 
 ---

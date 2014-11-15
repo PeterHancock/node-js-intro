@@ -271,8 +271,8 @@ examples/jira-issue/index.js (lines 13 to end)
 
 ```javascript
 * JiraClient.prototype.getIssue = function (key, callback/*(err, result)*/) {
-*     if (!key) throw 'No key specified';
-* 
+    if (!key) throw 'No key specified';
+
     var opts = url.parse('https://' + this.host + '/rest/api/2/search?jql=key=' + key);
     opts.auth = this.auth;
     opts.headers = {'Content-Type': 'application/json'};

@@ -11,13 +11,15 @@
   margin:0px;
 }
 
-.remark-code-line-highlighted {
+.remark-code-line {
 	transition-duration: 1s;
 	transition-timing-function: ease;
 }
 
-.remark-code-line-highlighted:hover {
+.remark-code-line:hover {
 	transition-duration: 0.5s;
+ 	background: #272822;
 	transition-timing-function: ease;
-	transform:scale(1.2, 1.2);
+	transform:scale(1.1, 1.1);
+	box-shadow: 0px 0px 10px 0px #000;
 }
